@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="IntegratieProject2Herexamens:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="IntegratieProject2Herexamens-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="IntegratieProject2Herexamens:war exploded" />
+    </root>
+  </artifact>
+</component>

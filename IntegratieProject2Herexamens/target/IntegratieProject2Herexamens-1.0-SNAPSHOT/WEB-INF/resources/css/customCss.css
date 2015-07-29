@@ -1,0 +1,19 @@
+#googleMap{
+    min-height: 400px;
+    width: 100%;
+    border-bottom-radius: 4px;
+}
+.maxHeight{
+    height: 100%;
+}
+/*
+ * Row with equal height columns
+ * --------------------------------------------------
+ */
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+
