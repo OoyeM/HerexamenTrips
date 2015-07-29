@@ -38,7 +38,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\IntegratieProject2Herexamens\target/MANIFEST.MF" />
+        <element id="file-copy" path="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="IntegratieProject2Herexamens/web/Web" />
     </root>

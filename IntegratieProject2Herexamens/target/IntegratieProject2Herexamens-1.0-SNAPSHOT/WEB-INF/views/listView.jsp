@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -37,6 +37,8 @@ pageEncoding="ISO-8859-1"%>
   <!--bootstrap table-->
   <link href="<c:url value="resources/css/bootstrap-table.css"/>" rel="stylesheet">
   <script src="<c:url value="resources/js/bootstrap-table.js"/>"></script>
+  <link href="<c:url value="resources/css/jasny-bootstrap.css"/>" rel="stylesheet">
+  <script src="<c:url value="resources/js/jasny-bootstrap.js"/>"></script>
 
 
 
@@ -192,33 +194,42 @@ pageEncoding="ISO-8859-1"%>
       <!-- /.row -->
     <div class="row">
       <div class="col-lg-12">
-        <h2>List of Employees</h2>
-        <table data-toggle="table">
+        <h2>List of Trips</h2>
+        <a href="<c:url value='/new' />"><button type="button" class="btn btn-primary"> Add trip</button></a>
+        </br>
+        </br>
+        <div class="table-responsive">
+
+        <table data-toggle="table" data-click-to-select="true">
           <thead>
           <tr>
-            <th>NAME</th>
-            <th>Joining Date</th>
-            <th>Salary</th>
-            <th>SSN</th>
+            <th>Name</th>
+            <th>Short description</th>
+            <th>Creator</th>
             <th></th>
           </tr>
           </thead>
 
-            <tbody>
+            <tbody data-link="row" class="rowlink">
             <c:forEach items="${trips}" var="trip">
             <tr>
-              <td>${trip.description}</td>
-              <td>${trip.title}</td>
-              <td>${trip.tripId}</td>
-              <td><a href="<c:url value='/edit-${trip.tripId}-trip' />">${trip.tripId}</a></td>
-              <td><a href="<c:url value='/delete-${trip.tripId}-trip' />">delete</a></td>
+              <td><a href="<c:url value='/tripDetails' />">${trip.title}</a></td>
+              <td><a href="<c:url value='/tripDetails' />">${trip.description}</a></td>
+              <td><a href="<c:url value='/tripDetails' />">${trip.createdBy}</a></td>
+              <td class="rowlink-skip tableCenter">
+                <a href="<c:url value='/edit-${trip.tripId}-trip' />"><span class="glyphicon glyphicon-edit glyphColorEdit" aria-hidden="true"></span></a>
+                <a href="<c:url value='/delete-${trip.tripId}-trip' />"><span class="glyphicon glyphicon-trash glyphColorDelete" aria-hidden="true"></span></a>
+              </td>
+
             </tr>
             </c:forEach>
             </tbody>
 
         </table>
-        <br/>
-        <a href="<c:url value='/new' />">Add New Employee</a>
+          </div>
+        </br>
+        <a href="<c:url value='/new' />"><button type="button" class="btn btn-primary"> Add trip</button></a>
+
       </div>
     </div>
     </div>

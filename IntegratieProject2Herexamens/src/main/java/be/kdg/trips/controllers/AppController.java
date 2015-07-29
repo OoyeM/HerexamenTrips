@@ -32,7 +32,7 @@ public class AppController {
     /*
      * This method will list all existing employees.
      */
-    @RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/tripsList" }, method = RequestMethod.GET)
     public String listEmployees(ModelMap model) {
 
         List<Trip> trips = service.findAllTrips();
@@ -117,7 +117,7 @@ public class AppController {
         return "redirect:/list";
     }
 
-    @RequestMapping(value = { "/map" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/tripDetails" }, method = RequestMethod.GET)
     public String listEmployees() {
 
         return "index";

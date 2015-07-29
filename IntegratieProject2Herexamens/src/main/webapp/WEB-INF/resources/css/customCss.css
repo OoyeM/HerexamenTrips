@@ -17,3 +17,12 @@
     display:         flex;
 }
 
+.tableCenter {
+    text-align: center;
+}
+.glyphColorDelete {
+    color:#ff0000;
+}
+ .glyphColorEdit {
+     color:greenyellow;
+ }
