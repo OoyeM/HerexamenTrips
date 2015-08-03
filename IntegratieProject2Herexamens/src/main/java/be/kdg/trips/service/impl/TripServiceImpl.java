@@ -1,10 +1,11 @@
 package be.kdg.trips.service.impl;
 
 /**
- * Created by Matthias on 25/07/2015.
- */
+* Created by Matthias on 25/07/2015.
+*/
 
 import be.kdg.trips.dao.TripDao;
+import be.kdg.trips.dao.TripLocationDao;
 import be.kdg.trips.model.Trip;
 import be.kdg.trips.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,17 @@ import java.util.List;
 public class TripServiceImpl implements TripService {
 
     @Autowired
-    private TripDao dao;
+    private TripDao tripDao;
 
-    public Trip findById(int id) {
-        return dao.findTripById(id);
+    @Autowired
+    TripLocationDao tripLocationDao;
+
+    public Trip findTripById(int id) {
+        return tripDao.findTripById(id);
     }
 
     public void saveTrip(Trip trip) {
-        dao.saveTrip(trip);
+        tripDao.saveTrip(trip);
     }
 
     /*
@@ -35,21 +39,22 @@ public class TripServiceImpl implements TripService {
      * It will be updated in db once transaction ends.
      */
     public void updateTrip(Trip trip) {
-        Trip entity = dao.findTripById(trip.getTripId());
+        Trip entity = tripDao.findTripById(trip.getTripId());
         if (entity != null) {
             entity.setTitle(trip.getTitle());
             entity.setDescription(trip.getDescription());
             entity.setTripLabels(trip.getTripLabels());
-            entity.setCreatedBy(trip.getCreatedBy());
-            entity.setEvents(trip.getEvents());
+//            entity.setEvents(trip.getEvents());
         }
     }
 
     public void deleteTripById(int id) {
-        dao.deleteTripById(id);
+        tripDao.deleteTripById(id);
     }
 
     public List<Trip> findAllTrips() {
-        return dao.findAllTrips();
+        return tripDao.findAllTrips();
     }
+
+
 }

@@ -1,13 +1,14 @@
 package be.kdg.trips.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Matthias on 23/07/2015.
  */
 @Entity
 @Table(name = "Trip_label")
-public class TripLabel {
+public class TripLabel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TRIPLABEL_ID", nullable = false, unique = true, length = 11)
@@ -41,4 +42,5 @@ public class TripLabel {
     public void setTrip(Trip trip) {
         this.trip = trip;
     }
+
 }

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Created by Matthias on 24/07/2015.
- */
+* Created by Matthias on 24/07/2015.
+*/
 @Repository("TripDao")
 public class TripImpl extends AbstractDao<Integer,Trip> implements TripDao {
 
@@ -34,9 +34,9 @@ public class TripImpl extends AbstractDao<Integer,Trip> implements TripDao {
         Query deleteTripLocation = getSession().createSQLQuery("delete from TripLocation where TRIP_ID = :tripId");
         deleteTripLocation.setInteger("tripId", tripId);
         deleteTripLocation.executeUpdate();
-        Query deleteUserEventLocation = getSession().createSQLQuery("delete from user_events where event_id IN(SELECT event_id from event where TRIP_ID = :tripId)");
-        deleteUserEventLocation.setInteger("tripId", tripId);
-        deleteUserEventLocation.executeUpdate();
+//        Query deleteUserEventLocation = getSession().createSQLQuery("delete from user_events where event_id IN(SELECT event_id from event where TRIP_ID = :tripId)");
+//        deleteUserEventLocation.setInteger("tripId", tripId);
+//        deleteUserEventLocation.executeUpdate();
         Query deleteEventLocation = getSession().createSQLQuery("delete from Event where TRIP_ID = :tripId");
         deleteEventLocation.setInteger("tripId", tripId);
         deleteEventLocation.executeUpdate();
@@ -48,7 +48,7 @@ public class TripImpl extends AbstractDao<Integer,Trip> implements TripDao {
     @SuppressWarnings("unchecked")
     public List<Trip> findAllTrips() {
         Criteria criteria = createEntityCriteria();
-        return (List<Trip>) criteria.list();
+        return criteria.list();
     }
 
 

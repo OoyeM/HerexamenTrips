@@ -1,6 +1,7 @@
 package be.kdg.trips.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name="Trip")
-public class Trip {
+public class Trip implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="TRIP_ID", nullable=false, unique=true, length=11)
@@ -31,13 +32,7 @@ public class Trip {
     @OneToMany(mappedBy = "trip")
     private Set<TripLocation> locations;
 
-    public Set<TripLabel> getTripLabels() {
-        return tripLabels;
-    }
 
-    public void setTripLabels(Set<TripLabel> tripLabels) {
-        this.tripLabels = tripLabels;
-    }
 
     public int getTripId() {
         return tripId;
@@ -69,6 +64,22 @@ public class Trip {
 
     public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public Set<TripLabel> getTripLabels() {
+        return tripLabels;
+    }
+
+    public void setTripLabels(Set<TripLabel> tripLabels) {
+        this.tripLabels = tripLabels;
+    }
+
+    public Set<TripLocation> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Set<TripLocation> locations) {
+        this.locations = locations;
     }
 
     public Set<Event> getEvents() {

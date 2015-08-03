@@ -1,6 +1,7 @@
 package be.kdg.trips.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -8,22 +9,20 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "Event")
-public class Event {
+public class Event implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "EVENT_ID", nullable = false, unique = true, length = 11)
+    @Column(name = "event_id", nullable = false, unique = true, length = 11)
     private int eventId;
-
+    @ManyToOne
+    @JoinColumn(name = "trip_id")
+    private Trip trip;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "events")
+    private Set<User> invitedUsers;
     @ManyToOne
     @JoinColumn(name = "createdBy")
     private User createdBy;
 
-    @ManyToOne
-    @JoinColumn(name = "trip_id")
-    private Trip trip;
-
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "events")
-    private Set<User> invitedUsers;
 
     public int getEventId() {
         return eventId;
@@ -47,5 +46,13 @@ public class Event {
 
     public void setInvitedUsers(Set<User> invitedUsers) {
         this.invitedUsers = invitedUsers;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 }
