@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +23,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -48,21 +45,36 @@ public class AppController {
 
     @PreAuthorize("permitAll")
     @RequestMapping(value = { "/" }, method = RequestMethod.GET)
-    public ModelAndView index(ModelMap model) {
+    public ModelAndView index(@RequestParam(value = "offset", required = false,defaultValue = "0") Integer offset,
+                              @RequestParam(value = "limit", required = false,defaultValue = "10") Integer limit,
+                              @RequestParam(value = "search", required = false,defaultValue = "") String keyWord
+            ,ModelMap model) {
 
-        List<Trip> trips = tripService.findAllTrips();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+
+    /* The user is logged in :) */
+            return new ModelAndView("redirect:/tripsList");
+        }
+
+        List<Trip> trips = tripService.findAllTrips(offset,limit,keyWord);
         model.addAttribute("trips", trips);
+        model.addAttribute("count", tripService.count(offset,limit,keyWord));
+        model.addAttribute("offset", offset);
+        model.addAttribute("keyWord", keyWord);
+        model.addAttribute("limit", limit);
         return new ModelAndView("index");
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value = { "/tripsList" }, method = RequestMethod.GET)
-    public ModelAndView tripsList(ModelMap model) {
-
-        List<Trip> trips = tripService.findAllTrips();
-        model.addAttribute("trips", trips);
-        return new ModelAndView("listView");
-    }
+//    @PreAuthorize("hasRole('ROLE_USER')")
+//    @RequestMapping(value = { "/tripsList" }, method = RequestMethod.GET)
+//    public ModelAndView tripsList(ModelMap model) {
+//
+//        List<Trip> trips = tripService.findAllTrips();
+//        model.addAttribute("trips", trips);
+//        return new ModelAndView("listView");
+//    }
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = { "/new" }, method = RequestMethod.GET)
     public ModelAndView newTrip(ModelMap model) {
@@ -169,39 +181,6 @@ public class AppController {
     }
 
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
 
-		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
-		}
-
-		if (logout != null) {
-			model.addObject("msg", "You've been logged out successfully.");
-		}
-		model.setViewName("login");
-
-		return model;
-
-	}
-
-    //	// customize the error message
-	private String getErrorMessage(HttpServletRequest request, String key) {
-
-		Exception exception = (Exception) request.getSession().getAttribute(key);
-
-		String error = "";
-		if (exception instanceof BadCredentialsException) {
-			error = "Invalid username and password!";
-		} else if (exception instanceof LockedException) {
-			error = exception.getMessage();
-		} else {
-			error = "Invalid username and password!";
-		}
-
-		return error;
-	}
 
 }

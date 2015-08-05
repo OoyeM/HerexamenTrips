@@ -52,9 +52,11 @@ public class TripServiceImpl implements TripService {
         tripDao.deleteTripById(id);
     }
 
-    public List<Trip> findAllTrips() {
-        return tripDao.findAllTrips();
+    public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord) {
+        return tripDao.findAllTrips(offset,limit,keyWord);
     }
-
+    public Long count(Integer offset,Integer limit,String keyWord){
+       return tripDao.count(offset,limit,keyWord);
+    }
 
 }

@@ -14,7 +14,7 @@ import java.util.List;
 * Created by Matthias on 30/07/2015.
 */
 @Repository("TripLocationDao")
-public class TripLocationImpl extends AbstractDao<Integer,TripLocation> implements TripLocationDao {
+public class TripLocationDaoImpl extends AbstractDao<Integer,TripLocation> implements TripLocationDao {
     @Override
     public void saveTripLocation(TripLocation tripLocation) {
         persist(tripLocation);

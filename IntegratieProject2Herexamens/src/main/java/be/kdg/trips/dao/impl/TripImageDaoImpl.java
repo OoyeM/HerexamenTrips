@@ -14,7 +14,7 @@ import java.util.List;
 * Created by Matthias on 1/08/2015.
 */
 @Repository("TripImageDao")
-public class TripImageImpl extends AbstractDao<Integer,TripImage> implements TripImageDao {
+public class TripImageDaoImpl extends AbstractDao<Integer,TripImage> implements TripImageDao {
 
     @Override
     public void saveTripImage(TripImage tripImage) {

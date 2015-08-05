@@ -5,6 +5,10 @@ import be.kdg.trips.dao.TripDao;
 import be.kdg.trips.model.Trip;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Subqueries;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,11 +17,22 @@ import java.util.List;
 * Created by Matthias on 24/07/2015.
 */
 @Repository("TripDao")
-public class TripImpl extends AbstractDao<Integer,Trip> implements TripDao {
+public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
 
     public Trip findTripById(int id) {
         return getByKey(id);
     }
+
+    @Override
+    public Long count(Integer offset,Integer limit,String keyWord) {
+        Criteria criteria = createEntityCriteria();
+        return (Long)criteria.setProjection(Projections.distinct(Projections.property("tripId")))
+                .createAlias("tripLabels", "labels")
+                .add(Restrictions.disjunction() // OR
+                        .add(Restrictions.like("labels.description", "%" + keyWord + "%"))
+                        .add(Restrictions.like("title", "%" + keyWord + "%"))).setProjection(Projections.rowCount()).uniqueResult();
+        }
+
 
 
     public void saveTrip(Trip employee) {
@@ -46,9 +61,19 @@ public class TripImpl extends AbstractDao<Integer,Trip> implements TripDao {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Trip> findAllTrips() {
+    public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord) {
         Criteria criteria = createEntityCriteria();
-        return criteria.list();
+        DetachedCriteria subquery =DetachedCriteria.forClass(Trip.class).
+                setProjection(Projections.distinct(Projections.property("tripId")))
+                .createAlias("tripLabels", "labels")
+                .add(Restrictions.disjunction() // OR
+                        .add(Restrictions.like("labels.description", "%" + keyWord + "%"))
+                        .add(Restrictions.like("title", "%" + keyWord + "%")));
+
+        return criteria
+                .add(Subqueries.propertyIn("tripId",subquery))
+                        .setFirstResult(offset != null ? offset : 0)
+                        .setMaxResults(limit != null ? limit : 10).list();
     }
 
 

@@ -18,8 +18,10 @@ public class User {
 	private boolean enabled;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
-	@OneToMany(mappedBy = "tripId")
+	@OneToMany(mappedBy = "createdBy")
 	private Set<Trip> trips;
+
+
 	@OneToMany(mappedBy = "createdBy")
 	private Set<Event> createdEvents;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

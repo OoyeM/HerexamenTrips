@@ -10,6 +10,7 @@ import java.util.List;
 public interface TripDao {
     public void saveTrip(Trip trip);
     public void deleteTripById(int tripId);
-    public List<Trip> findAllTrips();
+    public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord);
     public Trip findTripById(int tripId);
+    public Long count(Integer offset,Integer limit,String keyWord);
 }

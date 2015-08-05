@@ -117,7 +117,7 @@ ul.alert-dropdown {
         position: fixed;
         top: 51px;
         width: 225px;
-        margin-left: -225px;
+        /*margin-left: -225px;*/
         border: none;
         border-radius: 0;
         overflow-y: auto;

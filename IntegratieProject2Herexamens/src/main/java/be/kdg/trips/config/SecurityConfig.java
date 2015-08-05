@@ -32,9 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers("/index").access("permitAll")
 				.and()
-				.formLogin()
-				.loginPage("/login").permitAll().failureUrl("/login?error")
-				.permitAll();
+				.formLogin().loginPage("/login").permitAll().failureUrl("/login?error")
+				.usernameParameter("username")
+				.passwordParameter("password")
+				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll()
+				.and().csrf()
+				.and().exceptionHandling().accessDeniedPage("/403")
+				.and()
+				.logout().logoutSuccessUrl("/login?logout").permitAll();
 //		http.authorizeRequests().antMatchers("/admin/**")
 //			.access("hasRole('ROLE_ADMIN')").and().formLogin()
 //			.loginPage("/login").failureUrl("/login?error")
