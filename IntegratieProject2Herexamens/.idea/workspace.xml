@@ -2,62 +2,118 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="755ba46e-a71a-40d7-b1bb-ca358793c3fb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AccountController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_api_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/util/PaginationTaglib.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/customTaglib.tld" />
-      <change type="DELETED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\java\be\kdg\trips\dao\impl\TripImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\target\IntegratieProject2Herexamens-1.0-SNAPSHOT\WEB-INF\classes\be\kdg\trips\dao\impl\TripImageImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\target\IntegratieProject2Herexamens-1.0-SNAPSHOT\WEB-INF\classes\be\kdg\trips\dao\impl\TripImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\target\IntegratieProject2Herexamens-1.0-SNAPSHOT\WEB-INF\classes\be\kdg\trips\dao\impl\TripLocationImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\target\classes\be\kdg\trips\dao\impl\TripImageImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\target\classes\be\kdg\trips\dao\impl\TripImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\target\classes\be\kdg\trips\dao\impl\TripLocationImpl.class" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\java\be\kdg\trips\dao\impl\TripImageImpl.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripImageDaoImpl.java" />
-      <change type="MOVED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\java\be\kdg\trips\dao\impl\TripLocationImpl.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripLocationDaoImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/EventController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/EventDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/EventDaoImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/EventService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/EventServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_validator_5_2_1_Final.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/RoleDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/RoleDaoImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/RoleService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/RoleServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/TripLabelDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripLabelDaoImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/TripLabelService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/TripLabelServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/util/TripLocationSort.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/TripsController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/UserEvent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserEventDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserEventDaoImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/UserEventService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/UserEventServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/UserService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap-datepicker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap-datepicker.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap-datetimepicker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap-datetimepicker.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap-datetimepicker.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/createEvent.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/editLabel.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/locationDetails.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/moment.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/myEvents.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/myTrips.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/registration.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/tripDetails_NoUser.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/trips.jsp" />
+      <change type="DELETED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\java\be\kdg\trips\controllers\MainController.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\target\IntegratieProject2Herexamens-1.0-SNAPSHOT\views\listView.jsp" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\views\listView.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/events.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/controllers/AccountController.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/controllers/AccountController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/controllers/AccountController.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/controllers/AccountController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/controllers/AppController.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/controllers/AppController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/controllers/AppController.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/controllers/AppController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT.war" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT.war" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/model/Event.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/model/Event.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/model/Event.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/model/Event.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/controllers/ImageUploadController.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/controllers/ImageUploadController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/controllers/ImageUploadController.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/controllers/ImageUploadController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/service/impl/MyUserDetailsService.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/service/impl/MyUserDetailsService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/service/impl/MyUserDetailsService.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/service/impl/MyUserDetailsService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/config/SecurityConfig.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/config/SecurityConfig.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/config/SecurityConfig.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/config/SecurityConfig.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/dao/TripDao.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/dao/TripDao.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/dao/TripDao.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/dao/TripDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/dao/impl/TripDaoImpl.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/dao/impl/TripDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/dao/impl/TripDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/dao/impl/TripDaoImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/service/TripService.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/service/TripService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/service/TripService.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/service/TripService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/service/impl/TripServiceImpl.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/service/impl/TripServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/service/impl/TripServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/service/impl/TripServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/model/User.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/model/User.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/model/User.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/model/User.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/dao/UserDao.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/dao/UserDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/dao/UserDao.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/dao/UserDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/dao/impl/UserDaoImpl.class" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/be/kdg/trips/dao/impl/UserDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/be/kdg/trips/dao/impl/UserDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/be/kdg/trips/dao/impl/UserDaoImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AccountController.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AccountController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AppController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/Event.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/Event.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/ImageUploadController.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/ImageUploadController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratieProject2Herexamens.iml" afterPath="$PROJECT_DIR$/IntegratieProject2Herexamens.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/IntegratieProject2Herexamens_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/IntegratieProject2Herexamens_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/MyUserDetailsService.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/MyUserDetailsService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/SecurityConfig.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/SecurityConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/TripDao.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/TripDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripDaoImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/TripService.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/TripService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/TripServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/TripServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserDao.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserDaoImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/views/createLocation.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/createLocation.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/createLocation.jsp" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/createLocation.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/views/createTrip.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/createTrip.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/createTrip.jsp" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/createTrip.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/customCss.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/customCss.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/css/customCss.css" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/css/customCss.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/css/customCss.css" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/css/customCss.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/css/customCss.css" afterPath="$PROJECT_DIR$/target/classes/css/customCss.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/plugins/flot/flot-data.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/plugins/flot/flot-data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/js/plugins/flot/flot-data.js" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/js/plugins/flot/flot-data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/js/plugins/flot/flot-data.js" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/js/plugins/flot/flot-data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/js/plugins/flot/flot-data.js" afterPath="$PROJECT_DIR$/target/classes/js/plugins/flot/flot-data.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/views/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/index.jsp" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/views/listView.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/listView.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/listView.jsp" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/listView.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/login.jsp" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/login.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/messages.properties" afterPath="$PROJECT_DIR$/src/main/webapp/resources/messages.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/messages.properties" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/messages.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/messages.properties" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/messages.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/messages.properties" afterPath="$PROJECT_DIR$/target/classes/messages.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/plugins/morris/morris-data.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/plugins/morris/morris-data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/js/plugins/morris/morris-data.js" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/js/plugins/morris/morris-data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/js/plugins/morris/morris-data.js" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/js/plugins/morris/morris-data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/js/plugins/morris/morris-data.js" afterPath="$PROJECT_DIR$/target/classes/js/plugins/morris/morris-data.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/sb-admin.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/sb-admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/css/sb-admin.css" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/WEB-INF/classes/css/sb-admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/css/sb-admin.css" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/css/sb-admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/css/sb-admin.css" afterPath="$PROJECT_DIR$/target/classes/css/sb-admin.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/views/singleUpload.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/singleUpload.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/singleUpload.jsp" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/singleUpload.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/views/tripDetails.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/tripDetails.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/tripDetails.jsp" afterPath="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/views/tripDetails.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/views/tripEdit.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/tripEdit.jsp" />
@@ -88,143 +144,110 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="EventServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/EventServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2851" max-vertical-offset="3876">
-              <caret line="179" column="68" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/config/AppConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1105">
-              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AppController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="2907">
-              <caret line="47" column="114" selection-start-line="47" selection-start-column="114" selection-end-line="47" selection-end-column="114" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="singleUpload.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/singleUpload.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="595">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="26" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PaginationTaglib.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/util/PaginationTaglib.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2414">
-              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1258">
+              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2348#2349#0" expanded="true" />
-                <element signature="e#2374#2375#0" expanded="true" />
-                <element signature="e#2412#2413#0" expanded="true" />
-                <element signature="e#2442#2443#0" expanded="true" />
-                <element signature="e#2472#2473#0" expanded="true" />
-                <element signature="e#2501#2502#0" expanded="true" />
-                <element signature="e#2542#2543#0" expanded="true" />
-                <element signature="e#2578#2579#0" expanded="true" />
-                <element signature="e#2607#2608#0" expanded="true" />
-                <element signature="e#2635#2636#0" expanded="true" />
-                <element signature="e#2674#2675#0" expanded="true" />
-                <element signature="e#2708#2709#0" expanded="true" />
-                <element signature="e#2737#2738#0" expanded="true" />
-                <element signature="e#2765#2766#0" expanded="true" />
-                <element signature="e#2804#2805#0" expanded="true" />
-                <element signature="e#2838#2839#0" expanded="true" />
-                <element signature="e#2873#2874#0" expanded="true" />
-                <element signature="e#2904#2905#0" expanded="true" />
-                <element signature="e#2952#2953#0" expanded="true" />
-                <element signature="e#2992#2993#0" expanded="true" />
-                <element signature="e#3023#3024#0" expanded="true" />
-                <element signature="e#3050#3051#0" expanded="true" />
-                <element signature="e#3090#3091#0" expanded="true" />
-                <element signature="e#3122#3123#0" expanded="true" />
-                <element signature="e#3151#3152#0" expanded="true" />
-                <element signature="e#3179#3180#0" expanded="true" />
-                <element signature="e#3218#3219#0" expanded="true" />
-                <element signature="e#3252#3253#0" expanded="true" />
-                <element signature="e#3285#3286#0" expanded="true" />
-                <element signature="e#3314#3315#0" expanded="true" />
-                <element signature="e#3358#3359#0" expanded="true" />
-                <element signature="e#3394#3395#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageUploadController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/ImageUploadController.java">
+      <file leaf-file-name="UserEventServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/UserEventServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="1462">
-              <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.38173652" vertical-offset="1972" max-vertical-offset="2890">
-              <caret line="101" column="47" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tripEdit.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/tripEdit.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4229" max-vertical-offset="5457">
-              <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="262" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customTaglib.tld" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/customTaglib.tld">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="952">
-              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TripDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="1207">
-              <caret line="26" column="66" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="629">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
-                <marker date="1438728132087" expanded="true" signature="1431:1477" placeholder="delete from ..." />
-                <marker date="1438728132087" expanded="true" signature="1641:1745" placeholder="delete from ..." />
-                <marker date="1438728132087" expanded="true" signature="1684:1744" placeholder="SELECT locat..TripLocation..." />
-                <marker date="1438728132087" expanded="true" signature="1916:1964" placeholder="delete from ..." />
-                <marker date="1438728132087" expanded="true" signature="2417:2458" placeholder="delete from ..." />
-                <marker date="1438728132087" expanded="true" signature="2621:2661" placeholder="delete from ..." />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/UserEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="411" max-vertical-offset="1088">
+              <caret line="27" column="67" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createEvent.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/createEvent.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.038462" vertical-offset="2630" max-vertical-offset="3621">
+              <caret line="167" column="85" selection-start-line="167" selection-start-column="85" selection-end-line="167" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customCss.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/customCss.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.91237116" vertical-offset="20" max-vertical-offset="1513">
+              <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserRole.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/UserRole.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="799">
+              <caret line="10" column="7" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TripServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/TripServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+              <caret line="17" column="14" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserEventDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserEventDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDaoImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="207" max-vertical-offset="595">
+              <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1717">
+              <caret line="32" column="40" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -237,57 +260,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/RoleD.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/RoleDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/RoleImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/RoleService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/RoleServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/TripLocationServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/UserDetailService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/MyUserDetailService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createLocation.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/WebInitializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/HibernateConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/Config.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/SpringMvcInitializer.java" />
-        <option value="$PROJECT_DIR$/../../../spring-security-hibernate-annotation/spring-security-hibernate-annotation/src/main/java/be/kdg/trips/dao/impl/UserImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/viewModel/ImageViewModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/Event.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/listView.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/ImageUploadController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/MyWebAppInitializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/core/SpringSecurityInitializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/core/SpringMvcInitializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/AppConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/css/sb-admin.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/css/customCss.css" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AccountController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/login.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/config/SecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/listView.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/tripEdit.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/tripDetails.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/createLocation.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/util/PaginationLib.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/TripDao.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/locationDetails.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/TripService.java" />
         <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/TripServiceImpl.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/target/IntegratieProject2Herexamens-1.0-SNAPSHOT/resources/customTag/customTaglib.tld" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/customTag/customTaglib.tld" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/customTaglib.tld" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/customTaglib.tld" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AccountController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/createTrip.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/TripLabelService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/TripLabelServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/TripLabelDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripLabelDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/editLabel.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/tripDetails_NoUser.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/tripEdit.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/createLocation.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/singleUpload.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/ImageUploadController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/TripLocation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/TripLabel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/TripImage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/Trip.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/TripsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AppController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/util/PaginationTaglib.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/trips.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/myTrips.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/events.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/EventDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/EventService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/myEvents.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/EventDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/EventServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap-datepicker.min.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap-datetimepicker.js" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/MyUserDetailsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/UsesEvents.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/userEvents.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/Event.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/UserEvents.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/TripDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/UserEventServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/service/UserEventService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserEventDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserEventDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/EventController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/model/UserEvent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/createEvent.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/css/customCss.css" />
       </list>
     </option>
   </component>
@@ -313,6 +336,308 @@
     <option name="y" value="-8" />
     <option name="width" value="1616" />
     <option name="height" value="876" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>AOP</id>
+          </State>
+          <State>
+            <id>Abstraction issues</id>
+          </State>
+          <State>
+            <id>ActionScript specificJavaScript</id>
+          </State>
+          <State>
+            <id>Android</id>
+          </State>
+          <State>
+            <id>Android Lint</id>
+          </State>
+          <State>
+            <id>Assignment issues</id>
+          </State>
+          <State>
+            <id>Assignment issuesGroovy</id>
+          </State>
+          <State>
+            <id>Assignment issuesJavaScript</id>
+          </State>
+          <State>
+            <id>CDI(Contexts and Dependency Injection) issues</id>
+          </State>
+          <State>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Class metrics</id>
+          </State>
+          <State>
+            <id>Class structure</id>
+          </State>
+          <State>
+            <id>Cloning issues</id>
+          </State>
+          <State>
+            <id>Code maturity issues</id>
+          </State>
+          <State>
+            <id>Code style issues</id>
+          </State>
+          <State>
+            <id>Code style issuesJavaScript</id>
+          </State>
+          <State>
+            <id>CodeSpring CoreSpring</id>
+          </State>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+          <State>
+            <id>Concurrency annotation issues</id>
+          </State>
+          <State>
+            <id>Control FlowGroovy</id>
+          </State>
+          <State>
+            <id>Control flow issues</id>
+          </State>
+          <State>
+            <id>Control flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Data flow issues</id>
+          </State>
+          <State>
+            <id>Data flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Declaration redundancy</id>
+          </State>
+          <State>
+            <id>DeclarationGroovy</id>
+          </State>
+          <State>
+            <id>Dependency issues</id>
+          </State>
+          <State>
+            <id>Encapsulation issues</id>
+          </State>
+          <State>
+            <id>Error handling</id>
+          </State>
+          <State>
+            <id>Error handlingGroovy</id>
+          </State>
+          <State>
+            <id>Error handlingJavaScript</id>
+          </State>
+          <State>
+            <id>FlexUnit inspections</id>
+          </State>
+          <State>
+            <id>GPath inspectionsGroovy</id>
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>Google Web Toolkit issues</id>
+          </State>
+          <State>
+            <id>Groovy</id>
+          </State>
+          <State>
+            <id>Guice Inspections</id>
+          </State>
+          <State>
+            <id>HTML</id>
+          </State>
+          <State>
+            <id>Inheritance issues</id>
+          </State>
+          <State>
+            <id>Initialization issues</id>
+          </State>
+          <State>
+            <id>Internationalization issues</id>
+          </State>
+          <State>
+            <id>J2ME issues</id>
+          </State>
+          <State>
+            <id>JSON</id>
+          </State>
+          <State>
+            <id>JSP Inspections</id>
+          </State>
+          <State>
+            <id>JUnit issues</id>
+          </State>
+          <State>
+            <id>Java EE issues</id>
+          </State>
+          <State>
+            <id>Java language level issues</id>
+          </State>
+          <State>
+            <id>Java language level migration aids</id>
+          </State>
+          <State>
+            <id>JavaBeans issues</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript function metricsJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript validity issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Javadoc issues</id>
+          </State>
+          <State>
+            <id>Logging issues</id>
+          </State>
+          <State>
+            <id>Memory issues</id>
+          </State>
+          <State>
+            <id>Method MetricsGroovy</id>
+          </State>
+          <State>
+            <id>Method metrics</id>
+          </State>
+          <State>
+            <id>Modularization issues</id>
+          </State>
+          <State>
+            <id>Naming ConventionsGroovy</id>
+          </State>
+          <State>
+            <id>Naming conventions</id>
+          </State>
+          <State>
+            <id>Numeric issues</id>
+          </State>
+          <State>
+            <id>OSGi</id>
+          </State>
+          <State>
+            <id>OtherGroovy</id>
+          </State>
+          <State>
+            <id>Packaging issues</id>
+          </State>
+          <State>
+            <id>Pattern Validation</id>
+          </State>
+          <State>
+            <id>Performance issues</id>
+          </State>
+          <State>
+            <id>Plugin DevKit</id>
+          </State>
+          <State>
+            <id>Portability issues</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsGroovy</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsJavaScript</id>
+          </State>
+          <State>
+            <id>Probable bugs</id>
+          </State>
+          <State>
+            <id>Probable bugsCSS</id>
+          </State>
+          <State>
+            <id>Probable bugsCoffeeScript</id>
+          </State>
+          <State>
+            <id>Probable bugsGroovy</id>
+          </State>
+          <State>
+            <id>Probable bugsJavaScript</id>
+          </State>
+          <State>
+            <id>RESTful Web Service</id>
+          </State>
+          <State>
+            <id>Resource management issues</id>
+          </State>
+          <State>
+            <id>SQL</id>
+          </State>
+          <State>
+            <id>Security issues</id>
+          </State>
+          <State>
+            <id>Serialization issues</id>
+          </State>
+          <State>
+            <id>Spring</id>
+          </State>
+          <State>
+            <id>Spring CoreSpring</id>
+          </State>
+          <State>
+            <id>Spring DataSpring</id>
+          </State>
+          <State>
+            <id>Spring MVCSpring</id>
+          </State>
+          <State>
+            <id>TestNG</id>
+          </State>
+          <State>
+            <id>Threading issues</id>
+          </State>
+          <State>
+            <id>Threading issuesGroovy</id>
+          </State>
+          <State>
+            <id>Thymeleaf</id>
+          </State>
+          <State>
+            <id>UI Form Problems</id>
+          </State>
+          <State>
+            <id>Visibility issues</id>
+          </State>
+          <State>
+            <id>Web Services</id>
+          </State>
+          <State>
+            <id>WebSocket issues</id>
+          </State>
+          <State>
+            <id>XML</id>
+          </State>
+          <State>
+            <id>XMLSpring CoreSpring</id>
+          </State>
+          <State>
+            <id>XPath</id>
+          </State>
+          <State>
+            <id>toString() issues</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -376,10 +701,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -452,6 +773,36 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IntegratieProject2Herexamens" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IntegratieProject2Herexamens" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -476,10 +827,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="trips" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -748,7 +1095,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Spring-Hibernate-Bootstrap-Pagination-master/Spring-Hibernate-Bootstrap-Pagination-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.." />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
@@ -756,30 +1103,38 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.115207374" />
     <property name="FullScreen" value="false" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="options.lastSelected" value="preferences.lookFeel" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJSP" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="be.kdg.trips.dao" />
+      <recent name="be.kdg.trips.service" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\resources\js" />
+      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\resources" />
+      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\views" />
       <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\java\be\kdg\trips\config\core" />
       <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\java\be\kdg\trips\config" />
-      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\WEB-INF\resources\js" />
-      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\WEB-INF\resources\css" />
-      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\WEB-INF\resources\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\resources\js" />
+      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\resources\css" />
       <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\views" />
       <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp" />
-      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\webapp\WEB-INF\views" />
-      <recent name="C:\Users\Matthias\Desktop\IntegratieProject2Herexamens\HerexamenTrips\IntegratieProject2Herexamens\src\main\java\be\kdg\trips" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="be.kdg.trips.service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="be.kdg.trips.dao.impl" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Unnamed">
@@ -1144,50 +1499,77 @@
       <workItem from="1438642362662" duration="1093000" />
       <workItem from="1438643562930" duration="751000" />
       <workItem from="1438689654007" duration="29401000" />
-      <workItem from="1438776839973" duration="30000" />
+      <workItem from="1438776839973" duration="4241000" />
+      <workItem from="1438781101404" duration="23645000" />
+      <workItem from="1438811063016" duration="5192000" />
+      <workItem from="1438866858398" duration="4759000" />
+      <workItem from="1438871659183" duration="6609000" />
+      <workItem from="1439031267478" duration="23946000" />
+      <workItem from="1439123900100" duration="25405000" />
+      <workItem from="1439158263107" duration="8362000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155856000" />
+    <option name="totallyTimeSpent" value="257985000" />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963988" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22015405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4735376" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4206128" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22043702" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47361112" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47916666" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286908" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1215,41 +1597,41 @@
           <line>21</line>
           <properties />
         </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AccountController.java</url>
-          <line>28</line>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/EventServiceImpl.java</url>
+          <line>42</line>
           <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/ImageUploadController.java</url>
-          <line>47</line>
-          <properties />
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/ImageUploadController.java</url>
-          <line>48</line>
-          <properties />
-          <option name="timeStamp" value="46" />
+          <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AppController.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/EventServiceImpl.java</url>
           <line>54</line>
           <properties />
-          <option name="timeStamp" value="52" />
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/EventController.java</url>
+          <line>135</line>
+          <properties />
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/EventController.java</url>
+          <line>146</line>
+          <properties />
+          <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/ImageUploadController.java</url>
           <line>49</line>
           <properties class="be.kdg.trips.controllers.ImageUploadController" method="singleSave" />
-          <option name="timeStamp" value="47" />
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="53" />
+      <option name="time" value="81" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1258,414 +1640,445 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.0.23/tomcat-embed-core-8.0.23.jar!/org/apache/tomcat/util/net/AprEndpoint.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/TripsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2" vertical-offset="11897" max-vertical-offset="29716">
-          <caret line="833" column="20" selection-start-line="833" selection-start-column="20" selection-end-line="833" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2485" max-vertical-offset="4607">
+          <caret line="156" column="119" selection-start-line="156" selection-start-column="93" selection-end-line="156" selection-end-column="119" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.0.2.RELEASE/spring-security-core-4.0.2.RELEASE.jar!/org/springframework/security/core/context/SecurityContextHolder.class">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/myTrips.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.68" vertical-offset="223" max-vertical-offset="1275">
-          <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+        <state vertical-scroll-proportion="-6.076923" vertical-offset="1848" max-vertical-offset="3638">
+          <caret line="118" column="28" selection-start-line="116" selection-start-column="24" selection-end-line="118" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../spring-security-hibernate-annotation/spring-security-hibernate-annotation/src/main/java/be/kdg/trips/dao/impl/UserDaoImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/editLabel.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state vertical-scroll-proportion="-3.9230769" vertical-offset="1700" max-vertical-offset="3247">
+          <caret line="106" column="91" selection-start-line="106" selection-start-column="57" selection-end-line="106" selection-end-column="91" />
+          <folding>
+            <element signature="n#form:input#0;n#form:form#0;n#jsp:root#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="23" />
+        <state vertical-scroll-proportion="-0.13917525" vertical-offset="581" max-vertical-offset="1479">
+          <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/Event.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/myEvents.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1054">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/UserRole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/MyUserDetailsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="799">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/403.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/src.zip!/java/lang/Override.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43965518" vertical-offset="204" max-vertical-offset="595">
-          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/sb-admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.96" vertical-offset="1899" max-vertical-offset="3927">
-          <caret line="119" column="32" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="32" />
+        <state vertical-scroll-proportion="-9.807693" vertical-offset="2142" max-vertical-offset="3298">
+          <caret line="141" column="83" selection-start-line="141" selection-start-column="83" selection-end-line="141" selection-end-column="83" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/customCss.css">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.6.RELEASE/spring-aop-4.1.6.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="349" max-vertical-offset="731">
-          <caret line="35" column="24" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="24" />
+        <state vertical-scroll-proportion="-4.48" vertical-offset="2285" max-vertical-offset="2720">
+          <caret line="171" column="25" selection-start-line="171" selection-start-column="25" selection-end-line="171" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.2.0.RELEASE/spring-tx-4.2.0.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.48" vertical-offset="1180" max-vertical-offset="5508">
+          <caret line="109" column="21" selection-start-line="109" selection-start-column="21" selection-end-line="109" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.2.0.RELEASE/spring-tx-4.2.0.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionInterceptor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.32" vertical-offset="232" max-vertical-offset="833">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.6.RELEASE/spring-aop-4.1.6.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.64" vertical-offset="938" max-vertical-offset="2771">
+          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/EventDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="245" max-vertical-offset="1938">
+          <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <marker date="1439150863004" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1439150863004" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap-datepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="32249">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/moment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="54332">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.0.RELEASE/spring-webmvc-4.2.0.RELEASE.jar!/org/springframework/web/servlet/ModelAndView.class">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap-datetimepicker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.68" vertical-offset="121" max-vertical-offset="1921">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1377" max-vertical-offset="42279">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/tripDetails_NoUser.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="5321">
+          <caret line="195" column="68" selection-start-line="195" selection-start-column="68" selection-end-line="195" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.2.0.RELEASE/spring-core-4.2.0.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.68" vertical-offset="1328" max-vertical-offset="2499">
+        <state vertical-scroll-proportion="-4.64" vertical-offset="1329" max-vertical-offset="2499">
           <caret line="101" column="18" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.0.2.RELEASE/spring-security-core-4.0.2.RELEASE.jar!/org/springframework/security/access/intercept/aopalliance/MethodSecurityInterceptor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.68" vertical-offset="121" max-vertical-offset="697">
+        <state vertical-scroll-proportion="-4.64" vertical-offset="122" max-vertical-offset="697">
           <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.6.RELEASE/spring-aop-4.1.6.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2" vertical-offset="524" max-vertical-offset="2040">
+        <state vertical-scroll-proportion="-4.16" vertical-offset="525" max-vertical-offset="2040">
           <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.6.RELEASE/spring-aop-4.1.6.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2" vertical-offset="6406" max-vertical-offset="10132">
+        <state vertical-scroll-proportion="-4.16" vertical-offset="6407" max-vertical-offset="10132">
           <caret line="432" column="22" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.0.RELEASE/spring-web-4.2.0.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2" vertical-offset="422" max-vertical-offset="2822">
+        <state vertical-scroll-proportion="-4.16" vertical-offset="423" max-vertical-offset="2822">
           <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.0.RELEASE/spring-webmvc-4.2.0.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.52" vertical-offset="482" max-vertical-offset="2550">
+        <state vertical-scroll-proportion="-4.48" vertical-offset="483" max-vertical-offset="2550">
           <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.0.RELEASE/spring-webmvc-4.2.0.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2" vertical-offset="5607" max-vertical-offset="9095">
+        <state vertical-scroll-proportion="-4.16" vertical-offset="5608" max-vertical-offset="9095">
           <caret line="464" column="27" selection-start-line="464" selection-start-column="27" selection-end-line="464" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.0.RELEASE/spring-webmvc-4.2.0.RELEASE.jar!/org/springframework/web/servlet/mvc/method/AbstractHandlerMethodAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.68" vertical-offset="240" max-vertical-offset="663">
+        <state vertical-scroll-proportion="-4.64" vertical-offset="241" max-vertical-offset="663">
           <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.0.RELEASE/spring-webmvc-4.2.0.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.56" vertical-offset="4740" max-vertical-offset="11747">
+        <state vertical-scroll-proportion="-4.16" vertical-offset="5200" max-vertical-offset="11747">
           <caret line="376" column="19" selection-start-line="376" selection-start-column="19" selection-end-line="376" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/config/core/SpringSecurityInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-          <caret line="6" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/config/core/SpringMvcInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="9" max-vertical-offset="357">
-          <caret line="12" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1802">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/tripDetails.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.576923" vertical-offset="2564" max-vertical-offset="4624">
-          <caret line="177" column="13" selection-start-line="177" selection-start-column="13" selection-end-line="177" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.076923" vertical-offset="1224" max-vertical-offset="1734">
-          <caret line="92" column="15" selection-start-line="76" selection-start-column="8" selection-end-line="92" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/createLocation.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6923075" vertical-offset="847" max-vertical-offset="3094">
-          <caret line="67" column="46" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1666">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/config/SecurityConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="298" max-vertical-offset="952">
-          <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripLocationDaoImpl.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.0.RELEASE/spring-webmvc-4.2.0.RELEASE.jar!/org/springframework/web/servlet/FrameworkServlet.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="595">
-          <caret line="32" column="61" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="5438" max-vertical-offset="8636">
+          <caret line="401" column="19" selection-start-line="401" selection-start-column="19" selection-end-line="401" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/listView.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/EventDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9607842" vertical-offset="869" max-vertical-offset="2805">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="73" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="18" column="84" selection-start-line="18" selection-start-column="84" selection-end-line="18" selection-end-column="84" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/TripLocationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="374">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <caret line="14" column="47" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AccountController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/TripLocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="1258">
-          <caret line="24" column="78" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="78" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
+          <caret line="14" column="34" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/TripLabel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="663">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="663">
+          <caret line="18" column="33" selection-start-line="17" selection-start-column="4" selection-end-line="18" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/Trip.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1156">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1156">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1173">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="e#1686#1687#0" expanded="true" />
+            <element signature="e#1719#1720#0" expanded="true" />
+            <element signature="e#1779#1780#0" expanded="true" />
+            <element signature="e#1823#1824#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/AbstractDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="207" max-vertical-offset="612">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/TripLocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="37" max-vertical-offset="1394">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="612">
+          <caret line="13" column="60" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/TripDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <caret line="14" column="66" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/TripService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="37" max-vertical-offset="459">
-          <caret line="22" column="67" selection-start-line="22" selection-start-column="67" selection-end-line="22" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/TripServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="224" max-vertical-offset="918">
-          <caret line="58" column="48" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2851" max-vertical-offset="3876">
-          <caret line="179" column="68" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/TripDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="1207">
-          <caret line="26" column="66" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="2159">
+          <caret line="68" column="40" selection-start-line="66" selection-start-column="8" selection-end-line="68" selection-end-column="40" />
           <folding>
-            <marker date="1438728132087" expanded="true" signature="1431:1477" placeholder="delete from ..." />
-            <marker date="1438728132087" expanded="true" signature="1641:1745" placeholder="delete from ..." />
-            <marker date="1438728132087" expanded="true" signature="1684:1744" placeholder="SELECT locat..TripLocation..." />
-            <marker date="1438728132087" expanded="true" signature="1916:1964" placeholder="delete from ..." />
-            <marker date="1438728132087" expanded="true" signature="2417:2458" placeholder="delete from ..." />
-            <marker date="1438728132087" expanded="true" signature="2621:2661" placeholder="delete from ..." />
+            <marker date="1439064102054" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1439064102054" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1439064102054" expanded="true" signature="-1:-1" placeholder="SELECT locat..TripLocation..." />
+            <marker date="1439064102054" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1439064102054" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1439064102054" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/EventService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="493">
+          <caret line="14" column="34" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/MyUserDetailsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="653" max-vertical-offset="1003">
+          <caret line="69" column="49" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="49" />
+          <folding>
+            <element signature="e#2335#2336#0" expanded="false" />
+            <element signature="e#2384#2385#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/UserEventService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/createTrip.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="25.5" vertical-offset="663" max-vertical-offset="3298">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/EventController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2383" max-vertical-offset="3247">
+          <caret line="154" column="38" selection-start-line="154" selection-start-column="28" selection-end-line="154" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/config/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1105">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1105">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/customTaglib.tld">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserEventDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="952">
-          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/util/PaginationTaglib.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2414">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2348#2349#0" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#2412#2413#0" expanded="true" />
-            <element signature="e#2442#2443#0" expanded="true" />
-            <element signature="e#2472#2473#0" expanded="true" />
-            <element signature="e#2501#2502#0" expanded="true" />
-            <element signature="e#2542#2543#0" expanded="true" />
-            <element signature="e#2578#2579#0" expanded="true" />
-            <element signature="e#2607#2608#0" expanded="true" />
-            <element signature="e#2635#2636#0" expanded="true" />
-            <element signature="e#2674#2675#0" expanded="true" />
-            <element signature="e#2708#2709#0" expanded="true" />
-            <element signature="e#2737#2738#0" expanded="true" />
-            <element signature="e#2765#2766#0" expanded="true" />
-            <element signature="e#2804#2805#0" expanded="true" />
-            <element signature="e#2838#2839#0" expanded="true" />
-            <element signature="e#2873#2874#0" expanded="true" />
-            <element signature="e#2904#2905#0" expanded="true" />
-            <element signature="e#2952#2953#0" expanded="true" />
-            <element signature="e#2992#2993#0" expanded="true" />
-            <element signature="e#3023#3024#0" expanded="true" />
-            <element signature="e#3050#3051#0" expanded="true" />
-            <element signature="e#3090#3091#0" expanded="true" />
-            <element signature="e#3122#3123#0" expanded="true" />
-            <element signature="e#3151#3152#0" expanded="true" />
-            <element signature="e#3179#3180#0" expanded="true" />
-            <element signature="e#3218#3219#0" expanded="true" />
-            <element signature="e#3252#3253#0" expanded="true" />
-            <element signature="e#3285#3286#0" expanded="true" />
-            <element signature="e#3314#3315#0" expanded="true" />
-            <element signature="e#3358#3359#0" expanded="true" />
-            <element signature="e#3394#3395#0" expanded="true" />
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#813#814#0" expanded="true" />
+            <element signature="e#1184#1185#0" expanded="true" />
+            <element signature="e#1237#1238#0" expanded="true" />
+            <marker date="1439163637974" expanded="true" signature="-1:-1" placeholder="delete from ..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/tripEdit.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4229" max-vertical-offset="5457">
-          <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="262" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/singleUpload.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/UserEventDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="595">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="26" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/EventServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1258">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/TripServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="969">
+          <caret line="17" column="14" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/AppController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/service/impl/UserEventServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="2907">
-          <caret line="47" column="114" selection-start-line="47" selection-start-column="114" selection-end-line="47" selection-end-column="114" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="275" max-vertical-offset="663">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/UserRole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/controllers/ImageUploadController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/dao/impl/UserDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="1462">
-          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="207" max-vertical-offset="595">
+          <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/index.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.38173652" vertical-offset="1972" max-vertical-offset="2890">
-          <caret line="101" column="47" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1717">
+          <caret line="32" column="40" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/kdg/trips/model/UserEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="411" max-vertical-offset="1088">
+          <caret line="27" column="67" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/createEvent.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.038462" vertical-offset="2630" max-vertical-offset="3621">
+          <caret line="167" column="85" selection-start-line="167" selection-start-column="85" selection-end-line="167" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/customCss.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.91237116" vertical-offset="20" max-vertical-offset="1513">
+          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1738,6 +2151,17 @@
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
           <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.115207374" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

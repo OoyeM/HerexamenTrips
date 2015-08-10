@@ -7,22 +7,32 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by Matthias on 2/08/2015.
  */
 @Repository("UserDao")
-public class UserDaoImpl extends AbstractDao<Integer,User> implements UserDao {
+public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
 
     @Override
     public User findByUserName(String login) {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("username", login));
-        return (User)criteria.list().get(0);
+        return (User) criteria.list().get(0);
     }
 
     @Override
     public void saveUser(User user) {
         persist(user);
+    }
+
+    @Override
+    public List<User> getAllInvitedUsers(int eventId) {
+        Criteria criteria = createEntityCriteria();
+
+        return criteria.createAlias("invitedEvents", "userEvents").
+                add(Restrictions.eq("userEvents.eventId", eventId)).list();
     }
 }

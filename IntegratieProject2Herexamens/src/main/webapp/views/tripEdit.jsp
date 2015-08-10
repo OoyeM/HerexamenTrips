@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -8,7 +8,6 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
-
 
 
     <!-- Custom Fonts -->
@@ -26,30 +25,31 @@
         var map;
         var locationList = [];
         var sortableList;
-
+        var markerList = [];
 
         function initialize() {
-            sortableList = Sortable.create(document.getElementById("locationList"), {
-                animation:150,
-                onUpdate: function (event) {
-                    var testlist = [];
-                    var htmlListOrder = document.getElementById("locationList");
-                    $('#locationList li').each(function (index) {
-                        testlist.push($(this).attr('id'));
-                    });
-                    $.each(locationList, function (outerIndex) {
-                        var location = this;
-                        var id = this.id;
-                        $.each(testlist, function (innerIndex) {
-                            if (id.toString() === this.toString()) {
-                                locationList[outerIndex].order = innerIndex + 1;
-                            }
-                        });
-
-                    }); //alert(JSON.stringify(locationList));
-
-                }
-            });
+            // NIET NODIG, KAN NIET EDITEN
+//            sortableList = Sortable.create(document.getElementById("locationList"), {
+//                animation:150,
+//                onUpdate: function (event) {
+//                    var testlist = [];
+//                    var htmlListOrder = document.getElementById("locationList");
+//                    $('#locationList li').each(function (index) {
+//                        testlist.push($(this).attr('id'));
+//                    });
+//                    $.each(locationList, function (outerIndex) {
+//                        var location = this;
+//                        var id = this.id;
+//                        $.each(testlist, function (innerIndex) {
+//                            if (id.toString() === this.toString()) {
+//                                locationList[outerIndex].order = innerIndex + 1;
+//                            }
+//                        });
+//
+//                    }); //alert(JSON.stringify(locationList));
+//
+//                }
+//            });
 
             var mapProp = {
                 center: new google.maps.LatLng(51.508742, -0.120850),
@@ -70,12 +70,6 @@
                     var pos = new google.maps.LatLng(position.coords.latitude,
                             position.coords.longitude);
 
-                    var infowindow = new google.maps.InfoWindow({
-                        map: map,
-                        position: pos,
-                        content: 'Location found using HTML5.'
-                    });
-
                     map.setCenter(pos);
                     map.setZoom(14);
                 }, function () {
@@ -85,76 +79,33 @@
                 // Browser doesn't support Geolocation
                 handleNoGeolocation(false);
             }
-            document.addEventListener("click", function(){
-                if(locationList.length===0){
-                    $('#defaultEmptyLi').remove();
-                    var li = document.createElement("li");
-                    li.setAttribute("id", "defaultEmptyLi");
-                    li.appendChild( document.createTextNode("Nothing found"));
-                    document.getElementById("locationList").appendChild(li);
-                }else{
-                    $('#defaultEmptyLi').remove();
-                }
-            });
+
             //Add initial locations to list
 
             <c:forEach items="${tripLocations}" var="tripLocation">
-            addInitLatLng(${tripLocation.lng},${tripLocation.lat},${tripLocation.locationId},${tripLocation.orderNumber});
-
+            addInitLatLng(${tripLocation.lng}, ${tripLocation.lat}, ${tripLocation.locationId}, ${tripLocation.orderNumber}, "${tripLocation.name}");
             </c:forEach>
-
+            if (locationList.length === 0) {
+                $('#defaultEmptyLi').remove();
+                var li = document.createElement("li");
+                li.setAttribute("id", "defaultEmptyLi");
+                li.appendChild(document.createTextNode("Nothing found"));
+                document.getElementById("locationList").appendChild(li);
+            } else {
+                $('#defaultEmptyLi').remove();
+            }
             google.maps.event.addListener(map, 'click', addLocation);
-        }
 
+        }
         function addLocation(event) {
             window.location = "../editTrip/${tripId}/createLocation/"+event.latLng.lng()+"/"+event.latLng.lat()+"/";
 
         }
 
-
-        function handleNoGeolocation(errorFlag) {
-            if (errorFlag) {
-                var content = 'Error: The Geolocation service failed.';
-            } else {
-                var content = 'Error: Your browser doesn\'t support geolocation.';
-            }
-
-            var options = {
-                map: map,
-                position: new google.maps.LatLng(60, 105),
-                content: content
-            };
-
-            var infowindow = new google.maps.InfoWindow(options);
-            map.setCenter(options.position);
-        }
-//        function addLatLng(event) {
-//            var path = poly.getPath();
-//            path.push(event.latLng);
-//            var marker = new google.maps.Marker(
-//                    {
-//                        position: event.latLng,
-//                        title: '#' + path.getLength(),
-//                        map: map
-//                    });
-//            var li = document.createElement("li");
-//            li.setAttribute("id", path.getLength());
-//            li.appendChild(document.createTextNode("#" + path.getLength() + " Lat: " + event.latLng.lat().toFixed(10) + " - Lng: " + event.latLng.lng().toFixed(10)));
-//
-//            document.getElementById("locationList").appendChild(li);
-//            var listObject = {
-//                id: path.getLength(),
-//                order: path.getLength(),
-//                lat: event.latLng.lat(),
-//                lng: event.latLng.lng()
-//            };
-//            locationList.push(listObject);
-//            // alert(JSON  .stringify(locationList));
-//        }
-        //Load initial locations
-        function addInitLatLng(long,lat,id,orderN) {
+        // FUNCTION TO LOAD INITIAL LOCATIONS ON MAP
+        function addInitLatLng(long, lat, id, orderN, name) {
             var path = poly.getPath();
-            var latLngVar = new google.maps.LatLng(lat,long,false);
+            var latLngVar = new google.maps.LatLng(lat, long, false);
             path.push(latLngVar);
             var marker = new google.maps.Marker(
                     {
@@ -162,9 +113,16 @@
                         title: '#' + path.getLength(),
                         map: map
                     });
+            google.maps.event.addListener(marker, 'click', function () {
+                window.location.href = "../${tripId}/locations/" + id;
+            });
+            markerList.push(marker);
             var li = document.createElement("li");
             li.setAttribute("id", path.getLength());
-            li.appendChild(document.createTextNode("#" + path.getLength() + " Lat: " + latLngVar.lat().toFixed(10) + " - Lng: " + latLngVar.lng().toFixed(10)));
+            var a = document.createElement("a");
+            a.setAttribute("href", "${pageContext.request.contextPath}/createLocation/"+id);
+            a.appendChild(document.createTextNode("#" + orderN + ": " + name));
+            li.appendChild(a);
 
             document.getElementById("locationList").appendChild(li);
             var listObject = {
@@ -172,14 +130,12 @@
                 order: path.getLength(),
                 lat: latLngVar.lat(),
                 lng: latLngVar.lng(),
-                placeName: "",
+                placeName: name,
                 desc: ""
             };
             locationList.push(listObject);
             // alert(JSON  .stringify(locationList));
         }
-
-        //Save locations
 
         google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -204,26 +160,50 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">SB Admin</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}">Trips app</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name} <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="javascript:formSubmit()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            <c:if test="${not empty pageContext.request.userPrincipal}">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="fa fa-user"></i> ${pageContext.request.userPrincipal.name} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:formSubmit()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
 
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens// customSide class because of inteference with image gallery-->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav customSide">
-                <li>
-                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        </li>
+                    </ul>
                 </li>
+            </c:if>
+            <c:if test="${empty pageContext.request.userPrincipal}">
+                <li class="dropdown">
+                    <a href="${pageContext.request.contextPath}/login" class="dropdown-toggle"><i class="fa fa-user"></i> Login <b class="caret"></b></a>
+                </li>
+            </c:if>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <c:if test="${not empty pageContext.request.userPrincipal}">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/index"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                    </li>
+                    <li class="active">
+                        <a href="${pageContext.request.contextPath}/trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                    </li>
+                </c:if>
+                <c:if test="${empty pageContext.request.userPrincipal}">
+                    <li>
+                        <a href="${pageContext.request.contextPath}"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
+                    </li>
+                </c:if>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -236,40 +216,56 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Blank Page
-                        <small>Subheading</small>
-                    </h1>
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard active"></i> <a href="index.html">Dashboard</a>
+                            <i class="glyphicon glyphicon-list-alt active"></i> <a
+                                href="${pageContext.request.contextPath}">Trips</a>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-road active"></i>Trip: ${tripId}
                         </li>
                     </ol>
                 </div>
             </div>
             <!-- /.row -->
-
+            <row>
+                <div class="col-lg-12">
+                    <a href="javascript:tripInfoSubmit()"><button type="button" class="btn btn-primary">Save</button></a>
+                </div>
+                </br>
+            </row>
             <div class="row">
-                <div class="col-lg-4">
-                    <form:form id="formId" method="POST" modelAttribute="trip">
-                        <span class="input-group-addon" id="basic-addon1">Name</span>
-                        <form:input  type="text" placeholder="Fill in" path="title" id="title" class="form-control input-sm" />
+                <div class="col-lg-8">
 
-                        <span class="input-group-addon" id="basic-addon1">Description</span>
-                        <form:input type="text" placeholder="Fill in" path="description" id="description" class="form-control input-sm" />
 
-                        <span class="input-group-addon readonly" id="basic-addon1">Created By</span>
-                    <form:input type="text" placeholder="Fill in" path="createdBy.username" id="createdBy" readonly="true" class="form-control input-sm backgroundWhite" />
+                    <form:form method="POST" modelAttribute="trip" id="tripInfo">
+                        <div class="input-group">
+                            <span class="input-group-addon equalWidth" id="basic-addon1">   Name   </span>
+                            <form:input type="text" placeholder="Not found" path="title" id="title"
+                                        class="form-control input-sm backgroundWhite"/>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon  equalWidth"
+                                  id="basic-addon1">Description</span><form:textarea maxlength="500" path="description"
+                                                                                     id="description" rows="6"
+                                                                                     class="form-control backgroundWhite"/>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon  equalWidth" id="basic-addon1">Created By</span>
+                            <form:input type="text" placeholder="Not found" path="createdBy.username"
+                                        id="createdBy.username" readonly="true"
+                                        class="form-control input-sm backgroundWhite"/>
+                        </div>
                     </form:form>
-
                 </div>
                 <div class="col-lg-4">
-                    <a href="<c:url value='/editTrip/${trip.tripId}' />"><button type="button" class="btn btn-primary">Edit trip</button></a>
-                </div>
-                <div class="col-lg-4">
-                    <c:forEach items="${tripLocations}" var="tripLocation">
-                        ${tripLocation.lng} ${tripLocation.lat}
-                    </c:forEach>
+                    <form:form modelAttribute="labels">
+                        <div class="input-group">
+                            <span class="input-group-addon readonly equalWidth">Labels</span>
+                            <textarea id="labels" rows="7" class="form-control backgroundWhite">${labels}</textarea>
+                        </div>
+                        <a href="${pageContext.request.contextPath}/editTrip/${tripId}/editLabels"><button type="button" class="btn btn-primary customLabelBtnMargin">Add Label</button></a>
+                    </form:form>
                 </div>
             </div>
             </br>
@@ -277,7 +273,7 @@
                 <div class="col-lg-8">
                     <div class="panel panel-green">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Trip map</h3>
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Trip locations map</h3>
                         </div>
 
                         <div id="googleMap"></div>
@@ -287,30 +283,42 @@
                 <div class="col-lg-4">
                     <div class="panel panel-green">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Trip map</h3>
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Trip locations list</h3>
                         </div>
                         <div id="listContainer maxHeight">
-                            <ul id="locationList"><li id="defaultEmptyLi">Nothing found</li></ul>
+                            <ul id="locationList">
+                                <li id="defaultEmptyLi">Nothing found</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-               <div>
-                   <input type="submit" value="Save" class="btn btn-primary btn-sm">
-               </div>
-
-            </div>
-
         </div>
         <!-- /.container-fluid -->
 
     </div>
     <!-- /#page-wrapper -->
+    <%--logout--%>
+    <c:url value="/logout" var="logoutUrl"/>
+    <form action="${logoutUrl}" method="post" id="logoutForm">
+        <input type="hidden" name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
+    </form>
+
     <!-- END MAIN                           -->
 </div>
 <!-- /#wrapper -->
 
 
 </body>
+<script>
+    function formSubmit() {
+        document.getElementById("logoutForm").submit();
+    }
+</script>
+<script>
+    function tripInfoSubmit() {
+        document.getElementById("tripInfo").submit();
+    }
+</script>
 </html>

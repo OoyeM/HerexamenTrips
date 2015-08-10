@@ -28,7 +28,7 @@ import java.io.FileOutputStream;
 */
 
 @Controller
-@RequestMapping("/file/")
+@RequestMapping("/")
 public class ImageUploadController {
     @Autowired
     TripService tripService;
@@ -38,7 +38,7 @@ public class ImageUploadController {
     TripImageService imageService;
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value="/singleUpload/{tripLocationId}")
+    @RequestMapping(value="/singleUpload/{tripLocationId}",method = RequestMethod.GET)
     public ModelAndView singleUpload(@PathVariable int tripLocationId,ModelMap model){
         //model.addAttribute("imageModel",new ImageViewModel());
         //model.addAttribute("tripLocationId",tripLocationId);
@@ -48,7 +48,7 @@ public class ImageUploadController {
     @RequestMapping(value="/singleUpload/{tripLocationId}", method= RequestMethod.POST )
     public @ResponseBody
     ModelAndView singleSave(@RequestParam("file") MultipartFile file,
-                            @RequestParam("desc") String desc ,
+                            @RequestParam(value = "desc",required = false) String desc ,
                             @PathVariable int tripLocationId,
                             HttpServletRequest request){
         String fileName = null;

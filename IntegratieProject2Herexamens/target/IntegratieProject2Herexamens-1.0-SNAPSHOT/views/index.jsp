@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="tag" uri="WEB-INF/customTaglib.tld" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Bootstrap Admin Template</title>
-  <title>Herexamen_trips</title>
+    <title>Herexamen_trips</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
@@ -60,19 +60,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">SB Admin</a>
+      <a class="navbar-brand" href="index">Trips app</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
       <li class="dropdown">
-        <a href="login" class="dropdown-toggle"><i class="fa fa-user"></i> Login <b class="caret"></b></a>
+        <a href="${pageContext.request.contextPath}/  login" class="dropdown-toggle"><i class="fa fa-user"></i> Login <b class="caret"></b></a>
       </li>
     </ul>
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav side-nav">
-        <li>
-          <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
+        <li class="active">
+          <a href="index"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
         </li>
       </ul>
       </li>
@@ -90,7 +90,7 @@
         <div class="col-lg-12">
           <ol class="breadcrumb">
             <li>
-              <i class="fa fa-dashboard"></i>  <a href="index.html">Trips</a>
+              <i class="fa fa-dashboard"></i>  <a href="index">Trips</a>
             </li>
           </ol>
         </div>
@@ -119,7 +119,6 @@
                 <th>Name</th>
                 <th>Short description</th>
                 <th>Creator</th>
-                <th></th>
               </tr>
               </thead>
 
@@ -127,12 +126,8 @@
               <c:forEach items="${trips}" var="trip">
                 <tr>
                   <td><a href="<c:url value='/trip/${trip.tripId}' />">${trip.title}</a></td>
-                  <td><a href="<c:url value='/trip/${trip.tripId}' />">${trip.description}</a></td>
+                  <td><a href="<c:url value='/trip/${trip.tripId}' />">${fn:substring(trip.description,0,100)}</a></td>
                   <td><a href="<c:url value='/trip/${trip.tripId}' />">${trip.createdBy.username}</a></td>
-                  <td class="rowlink-skip tableCenter">
-                    <a href="<c:url value='/edit-${trip.tripId}-trip' />"><span class="glyphicon glyphicon-edit glyphColorEdit" aria-hidden="true"></span></a>
-                    <a href="<c:url value='/delete-${trip.tripId}-trip' />"><span class="glyphicon glyphicon-trash glyphColorDelete" aria-hidden="true"></span></a>
-                  </td>
 
                 </tr>
               </c:forEach>
@@ -140,10 +135,9 @@
 
             </table>
           </div>
-          <div class="table-responsive">
+          <div>
             <tag:paginate limit="${limit}" offset="${offset}" count="${count}" uri="${pageContext.request.contextPath}"
                           next="&raquo;" previous="&laquo;" search="${search}" />
-
           </div>
 
 

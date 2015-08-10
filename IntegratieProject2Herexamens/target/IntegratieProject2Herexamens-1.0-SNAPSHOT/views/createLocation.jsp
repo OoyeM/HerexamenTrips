@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -8,7 +8,6 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
-
 
 
     <!-- Custom Fonts -->
@@ -25,14 +24,15 @@
 
 
     </script>
-    <!-- Custom CSS -->
-    <link href="<c:url value="/resources/css/sb-admin.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/customCss.css"/>" rel="stylesheet">
-
     <!--imagegallary-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
     <link href="<c:url value="/resources/css/bootstrap-image-gallery.min.css"/>" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="<c:url value="/resources/css/sb-admin.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/css/customCss.css"/>" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -49,26 +49,50 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">SB Admin</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}">Trips app</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name} <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="javascript:formSubmit()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            <c:if test="${not empty pageContext.request.userPrincipal}">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="fa fa-user"></i> ${pageContext.request.userPrincipal.name} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:formSubmit()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
 
-                    </li>
-                </ul>
-            </li>
+                        </li>
+                    </ul>
+                </li>
+            </c:if>
+            <c:if test="${empty pageContext.request.userPrincipal}">
+                <li class="dropdown">
+                    <a href="${pageContext.request.contextPath}/login" class="dropdown-toggle"><i class="fa fa-user"></i> Login <b class="caret"></b></a>
+                </li>
+            </c:if>
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li>
-                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                </li>
+                <c:if test="${not empty pageContext.request.userPrincipal}">
+                    <li>
+                        <a href="index"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                    </li>
+                    <li>
+                        <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                    </li>
+                    <li class="active">
+                        <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+                    </li>
+                    <li>
+                        <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                    </li>
+                </c:if>
+                <c:if test="${empty pageContext.request.userPrincipal}">
+                    <li>
+                        <a href="${pageContext.request.contextPath}"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
+                    </li>
+                </c:if>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -81,93 +105,125 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Blank Page
-                        <small>Subheading</small>
-                    </h1>
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard active"></i> <a href="index.html">Dashboard</a>
+                            <i class="glyphicon glyphicon-list-alt active"></i> <a
+                                href="${pageContext.request.contextPath}">Trips</a>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-road active"></i><a
+                                href="${pageContext.request.contextPath}/trip/${tripId}">Trip: ${tripId}</a>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-road active"></i>Triplocation: ${tripLocation.locationId}
                         </li>
                     </ol>
                 </div>
             </div>
+
+
             <!-- /.row -->
+            <form:form method="POST" modelAttribute="tripLocation">
             <div class="row">
-                <div class="col-lg-4">
-                    <form:form method="POST" modelAttribute="tripLocation">
-                        <span class="input-group-addon" id="basic-addon1">Name</span>
-                        <form:input  type="text" placeholder="Not found" path="name" id="name" class="form-control input-sm backgroundWhite" />
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-addon equalWidth" id="basic-addon1">Name</span>
+                        <form:input type="text" placeholder="Not found" path="name" id="name"
+                                    class="form-control input-sm backgroundWhite"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon equalWidth" id="basic-addon1">Longitude</span>
+                        <form:input type="text" placeholder="Not found" path="lng" id="lng" readonly="true"
+                                    class="form-control input-sm backgroundWhite"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon equalWidth" id="basic-addon1">Latitude</span>
+                        <form:input type="text" placeholder="Not found" path="lat" id="lat" readonly="true"
+                                    class="form-control input-sm backgroundWhite"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon equalWidth" id="basic-addon1">Description</span>
+                        <form:textarea placeholder="Not found" path="description" id="description"
+                                       rows="5" class="form-control backgroundWhite"/>
+                    </div>
+                    </br>
 
-                        <span class="input-group-addon" id="basic-addon1">Description</span>
-                        <form:input type="text" placeholder="Not found" path="description" id="description" class="form-control input-sm backgroundWhite" />
+                </div>
 
-                        <span class="input-group-addon readonly" id="basic-addon1">Question</span>
-                        <form:input type="text" placeholder="Not found" path="question" id="question" class="form-control input-sm backgroundWhite" />
-
-                        <span class="input-group-addon readonly" id="basic-addon1">Longitude</span>
-                        <form:input type="text" placeholder="Not found" path="lng" id="lng" readonly="true" class="form-control input-sm backgroundWhite" />
-
-                        <span class="input-group-addon readonly" id="basic-addon1">Latitude</span>
-                        <form:input type="text" placeholder="Not found" path="lat" id="lat.username" readonly="true" class="form-control input-sm backgroundWhite" />
-
-                        <input type="submit" value="Save" class="btn btn-primary btn-sm">
-                    </form:form>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-addon equalWidth" id="basic-addon1">Question</span>
+                        <form:textarea placeholder="Not found" path="question" id="question"
+                                       rows="9" class="form-control backgroundWhite"/>
+                    </div>
                 </div>
 
 
 
-
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <a href="<c:url value='/file/singleUpload/${tripLocationId}' />"><button type="button" class="btn btn-primary"> Add picture</button></a>
-                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div id="links">
-                        <c:forEach items="${images}" var="image">
-                            <a href="${image.imgUrl}" title="${image.description}" data-gallery>
-                                <img src="${image.thumbUrl}" alt="${image.description}" />
-                            </a>
-                        </c:forEach>
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a href="<c:url value='/singleUpload/${tripLocationId}' />"><button type="button" class="btn btn-primary"> Add picture</button></a>
+                </div>
+            </div>
+            </form:form>
+            </br>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Trip location pictures</h3>
+                        </div>
+                        <div id="listContainer">
+
+                            <c:forEach items="${images}" var="image">
+                                <a href="${image.imgUrl}" title="${image.description}" data-gallery>
+                                    <img src="${image.thumbUrl}" alt="${image.description}"/>
+                                </a>
+                            </c:forEach>
+                            <c:if test="${empty images}">
+                                <p style="margin-left: 5px"> No Images Found</p>
+                            </c:if>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <%--IMAGE GALLARY--%>
+            <div id="blueimp-gallery" class="blueimp-gallery">
+                <!-- The container for the modal slides -->
+                <div class="slides"></div>
+                <!-- Controls for the borderless lightbox -->
+                <h3 class="title"></h3>
+                <a class="prev">?</a>
+                <a class="next">?</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+                <!-- The modal dialog, which will be used to wrap the lightbox content -->
+                <div class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"></h4>
+                            </div>
+                            <div class="modal-body next"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left prev">
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Previous
+                                </button>
+                                <button type="button" class="btn btn-primary next">
+                                    Next
+                                    <i class="glyphicon glyphicon-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <<div id="blueimp-gallery" class="blueimp-gallery">
-            <!-- The container for the modal slides -->
-            <div class="slides"></div>
-            <!-- Controls for the borderless lightbox -->
-            <h3 class="title"></h3>
-            <a class="prev">?</a>
-            <a class="next">?</a>
-            <a class="close">×</a>
-            <a class="play-pause"></a>
-            <ol class="indicator"></ol>
-            <!-- The modal dialog, which will be used to wrap the lightbox content -->
-            <div class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title"></h4>
-                        </div>
-                        <div class="modal-body next"></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left prev">
-                                <i class="glyphicon glyphicon-chevron-left"></i>
-                                Previous
-                            </button>
-                            <button type="button" class="btn btn-primary next">
-                                Next
-                                <i class="glyphicon glyphicon-chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         </div>
@@ -175,6 +231,17 @@
 
     </div>
     <!-- /#page-wrapper -->
+    <%--logout--%>
+    <c:url value="/logout" var="logoutUrl" />
+    <form action="${logoutUrl}" method="post" id="logoutForm">
+        <input type="hidden" name="${_csrf.parameterName}"
+               value="${_csrf.token}" />
+    </form>
+    <script>
+        function formSubmit() {
+            document.getElementById("logoutForm").submit();
+        }
+    </script>
     <!-- END MAIN                           -->
 </div>
 <!-- /#wrapper -->

@@ -2,6 +2,7 @@ package be.kdg.trips.service.impl;
 
 import be.kdg.trips.dao.UserDao;
 import be.kdg.trips.model.UserRole;
+import be.kdg.trips.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,7 +19,8 @@ import java.util.List;
 import java.util.Set;
 
 @Service("userDetailsService")
-public class MyUserDetailsService implements UserDetailsService {
+@Transactional
+public class MyUserDetailsService implements UserDetailsService, UserService {
 
 	@Autowired
 	private UserDao userDao;
@@ -54,4 +56,17 @@ public class MyUserDetailsService implements UserDetailsService {
 		return Result;
 	}
 
+	public void createUser(be.kdg.trips.model.User user){
+		user.setEnabled(true);
+		userDao.saveUser(user);
+	}
+
+	public be.kdg.trips.model.User getUser(String username){
+		return userDao.findByUserName(username);
+	}
+
+	@Override
+	public List<be.kdg.trips.model.User> getAllInvitedUsers(int eventId) {
+		return userDao.getAllInvitedUsers(eventId);
+	}
 }

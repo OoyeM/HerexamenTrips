@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tag" uri="WEB-INF/customTaglib.tld" %>
 <%@page session="true"%>
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +14,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Bootstrap Admin Template</title>
+  <title>Trips app - Bootstrap Admin Template</title>
   <title>Herexamen_trips</title>
 
   <!-- Bootstrap Core CSS -->
@@ -58,14 +59,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">SB Admin</a>
+      <a class="navbar-brand" href="index">Trips app</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name} <b class="caret"></b></a>
         <ul class="dropdown-menu">
-           <li>
+          <li>
             <a href="javascript:formSubmit()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
 
           </li>
@@ -76,9 +77,16 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav side-nav">
         <li>
-          <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+          <a href="events"><i class="fa fa-fw fa-dashboard"></i>Events</a>
         </li>
-          </ul>
+        <li class="active">
+          <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+        </li>
+        <li>
+          <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+        </li>
+        <li>
+          <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
         </li>
       </ul>
     </div>
@@ -94,66 +102,67 @@
         <div class="col-lg-12">
           <ol class="breadcrumb">
             <li>
-              <i class="fa fa-dashboard"></i>  <a href="index.html">Trip List</a>
+              <i class="fa fa-dashboard"></i>  <a href="index">Events</a>
             </li>
           </ol>
         </div>
       </div>
-      <!-- /.row -->
-    <div class="row">
-      <div class="col-lg-12">
-        <h2>List of Trips</h2>
-        <a href="<c:url value='/new' />"><button type="button" class="btn btn-primary"> Add trip</button></a>
-        </br>
-        </br>
-        <div class="table-responsive">
-
-        <table data-toggle="table" data-click-to-select="true">
-          <thead>
-          <tr>
-            <th>Name</th>
-            <th>Short description</th>
-            <th>Creator</th>
-            <th></th>
-          </tr>
-          </thead>
-
-            <tbody data-link="row" class="rowlink">
-            <c:forEach items="${trips}" var="trip">
-            <tr>
-              <td><a href="<c:url value='/trip/${trip.tripId}' />">${trip.title}</a></td>
-              <td><a href="<c:url value='/trip/${trip.tripId}' />">${trip.description}</a></td>
-              <td><a href="<c:url value='/trip/${trip.tripId}' />">${trip.createdBy.username}</a></td>
-              <td class="rowlink-skip tableCenter">
-                <a href="<c:url value='/edit-${trip.tripId}-trip' />"><span class="glyphicon glyphicon-edit glyphColorEdit" aria-hidden="true"></span></a>
-                <a href="<c:url value='/delete-${trip.tripId}-trip' />"><span class="glyphicon glyphicon-trash glyphColorDelete" aria-hidden="true"></span></a>
-              </td>
-
-            </tr>
-            </c:forEach>
-            </tbody>
-
-        </table>
-          </div>
-        </br
-
-
-        <a href="<c:url value='/new' />"><button type="button" class="btn btn-primary"> Add trip</button></a>
-
-        <%--TO BE ABLE TO LOG OUT--%>
-        <c:url value="/logout" var="logoutUrl" />
-        <form action="${logoutUrl}" method="post" id="logoutForm">
-          <input type="hidden" name="${_csrf.parameterName}"
-                 value="${_csrf.token}" />
-        </form>
-        <script>
-          function formSubmit() {
-            document.getElementById("logoutForm").submit();
-          }
-        </script>
-
+      <%--FILTER--%>
+      <div class="row">
+        <div class="col-lg-12">
+          <form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/events" method="GET">
+            <a href="<c:url value='/myEvents/create' />">
+              <button type="button" class="btn btn-primary"> Add event</button>
+            </a>
+            <div class="form-group" >
+              <input type="text" class="form-control" placeholder="Search" id="search" name="search" >
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+        </div>
       </div>
-    </div>
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="table-responsive">
+
+            <table data-toggle="table" data-click-to-select="true">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Creator</th>
+                <th>Trip</th>
+              </tr>
+              </thead>
+
+              <tbody data-link="row" class="rowlink">
+              <c:forEach items="${events}" var="event">
+                <tr>
+                  <td><a href="<c:url value='/event/${event.eventId}' />">${event.title}</a></td>
+                  <td><a href="<c:url value='/event/${event.eventId}' />">${event.eventDate}</a></td>
+                  <td><a href="<c:url value='/event/${event.eventId}' />">${event.createdBy.username}</a></td>
+                  <td><a href="<c:url value='/event/${event.trip.tripId}' />">${event.trip.title}</a></td>
+
+                </tr>
+              </c:forEach>
+              </tbody>
+
+            </table>
+          </div>
+          <div>
+            <tag:paginate limit="${limit}" offset="${offset}" count="${count}" uri="${pageContext.request.contextPath}/myEvents"
+                          next="&raquo;" previous="&laquo;" search="${search}" />
+          </div>
+
+
+
+
+
+
+
+        </div>
+      </div>
     </div>
     <!-- /.container-fluid -->
 
@@ -162,7 +171,17 @@
 
 </div>
 <!-- /#wrapper -->
-
+<%--logout--%>
+<c:url value="/logout" var="logoutUrl"/>
+<form action="${logoutUrl}" method="post" id="logoutForm">
+  <input type="hidden" name="${_csrf.parameterName}"
+         value="${_csrf.token}"/>
+</form>
+<script>
+  function formSubmit() {
+    document.getElementById("logoutForm").submit();
+  }
+</script>
 
 </body>
 

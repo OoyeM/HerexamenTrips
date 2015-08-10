@@ -1,14 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="tag" uri="WEB-INF/customTaglib.tld" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Herexamen_trips</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
 
+
+    <!-- Custom CSS -->
+    <link href="<c:url value="/resources/css/sb-admin.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/resources/css/customCss.css"/>" rel="stylesheet" type="text/css">
 
 
     <!-- Custom Fonts -->
@@ -21,35 +37,41 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+    <!--bootstrap table-->
+    <link href="<c:url value="/resources/css/bootstrap-table.css"/>" rel="stylesheet">
+    <script src="<c:url value="/resources/js/bootstrap-table.js"/>"></script>
+    <link href="<c:url value="/resources/css/jasny-bootstrap.css"/>" rel="stylesheet">
+    <script src="<c:url value="/resources/js/jasny-bootstrap.js"/>"></script>
     <script>
         var poly;
         var map;
         var locationList = [];
         var sortableList;
-
+        var markerList=[];
 
         function initialize() {
-            sortableList = Sortable.create(document.getElementById("locationList"), {
-                animation:150,
-                onUpdate: function (event) {
-                    var testlist = [];
-                    var htmlListOrder = document.getElementById("locationList");
-                    $('#locationList li').each(function (index) {
-                        testlist.push($(this).attr('id'));
-                    });
-                    $.each(locationList, function (outerIndex) {
-                        var location = this;
-                        var id = this.id;
-                        $.each(testlist, function (innerIndex) {
-                            if (id.toString() === this.toString()) {
-                                locationList[outerIndex].order = innerIndex + 1;
-                            }
-                        });
-
-                    }); //alert(JSON.stringify(locationList));
-
-                }
-            });
+            // NIET NODIG, KAN NIET EDITEN
+//            sortableList = Sortable.create(document.getElementById("locationList"), {
+//                animation:150,
+//                onUpdate: function (event) {
+//                    var testlist = [];
+//                    var htmlListOrder = document.getElementById("locationList");
+//                    $('#locationList li').each(function (index) {
+//                        testlist.push($(this).attr('id'));
+//                    });
+//                    $.each(locationList, function (outerIndex) {
+//                        var location = this;
+//                        var id = this.id;
+//                        $.each(testlist, function (innerIndex) {
+//                            if (id.toString() === this.toString()) {
+//                                locationList[outerIndex].order = innerIndex + 1;
+//                            }
+//                        });
+//
+//                    }); //alert(JSON.stringify(locationList));
+//
+//                }
+//            });
 
             var mapProp = {
                 center: new google.maps.LatLng(51.508742, -0.120850),
@@ -70,12 +92,6 @@
                     var pos = new google.maps.LatLng(position.coords.latitude,
                             position.coords.longitude);
 
-                    var infowindow = new google.maps.InfoWindow({
-                        map: map,
-                        position: pos,
-                        content: 'Location found using HTML5.'
-                    });
-
                     map.setCenter(pos);
                     map.setZoom(14);
                 }, function () {
@@ -85,71 +101,67 @@
                 // Browser doesn't support Geolocation
                 handleNoGeolocation(false);
             }
-//            document.addEventListener("click", function(){
-//                if(locationList.length===0){
-//                    $('#defaultEmptyLi').remove();
-//                    var li = document.createElement("li");
-//                    li.setAttribute("id", "defaultEmptyLi");
-//                    li.appendChild( document.createTextNode("Nothing found"));
-//                    document.getElementById("locationList").appendChild(li);
-//                }else{
-//                    $('#defaultEmptyLi').remove();
-//                }
-//            });
-//            google.maps.event.addListener(map, 'click', addLatLng);
+
+            //Add initial locations to list
+
+            <c:forEach items="${tripLocations}" var="tripLocation">
+            addInitLatLng(${tripLocation.lng},${tripLocation.lat},${tripLocation.locationId},${tripLocation.orderNumber},"${tripLocation.name}");
+            </c:forEach>
+            if(locationList.length===0){
+                $('#defaultEmptyLi').remove();
+                var li = document.createElement("li");
+                li.setAttribute("id", "defaultEmptyLi");
+                li.appendChild( document.createTextNode("Nothing found"));
+                document.getElementById("locationList").appendChild(li);
+            }else{
+                $('#defaultEmptyLi').remove();
+            }
+
+
         }
-//        function handleNoGeolocation(errorFlag) {
-//            if (errorFlag) {
-//                var content = 'Error: The Geolocation service failed.';
-//            } else {
-//                var content = 'Error: Your browser doesn\'t support geolocation.';
-//            }
-//
-//            var options = {
-//                map: map,
-//                position: new google.maps.LatLng(60, 105),
-//                content: content
-//            };
-//
-//            var infowindow = new google.maps.InfoWindow(options);
-//            map.setCenter(options.position);
-//        }
-        function addLatLng(event) {
+
+
+        // FUNCTION TO LOAD INITIAL LOCATIONS ON MAP
+        function addInitLatLng(long,lat,id,orderN,name) {
             var path = poly.getPath();
-            path.push(event.latLng);
+            var latLngVar = new google.maps.LatLng(lat,long,false);
+            path.push(latLngVar);
             var marker = new google.maps.Marker(
                     {
-                        position: event.latLng,
+                        position: latLngVar,
                         title: '#' + path.getLength(),
                         map: map
                     });
+            google.maps.event.addListener(marker, 'click', function() {window.location.href = "../${tripId}/locations/"+id;});
+            markerList.push(marker);
             var li = document.createElement("li");
             li.setAttribute("id", path.getLength());
-            li.appendChild(document.createTextNode("#" + path.getLength() + " Lat: " + event.latLng.lat().toFixed(10) + " - Lng: " + event.latLng.lng().toFixed(10)));
+            var a = document.createElement("a");
+            a.setAttribute("href","../${tripId}/locations/"+id);
+            a.appendChild(document.createTextNode("#" + orderN + ": "+name));
+            li.appendChild(a);
 
             document.getElementById("locationList").appendChild(li);
             var listObject = {
                 id: path.getLength(),
                 order: path.getLength(),
-                lat: event.latLng.lat(),
-                lng: event.latLng.lng(),
-                placeName: "",
+                lat: latLngVar.lat(),
+                lng: latLngVar.lng(),
+                placeName: name,
                 desc: ""
             };
             locationList.push(listObject);
             // alert(JSON  .stringify(locationList));
         }
+
         google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
-    <!-- Custom CSS -->
-    <link href="<c:url value="/resources/css/sb-admin.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/customCss.css"/>" rel="stylesheet">
+
 
 </head>
 
 <body>
-
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -162,31 +174,49 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">SB Admin</a>
+            <a class="navbar-brand" href="index">Trips app</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name} <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="javascript:formSubmit()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            <c:if test="${not empty pageContext.request.userPrincipal}">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:formSubmit()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
 
-                    </li>
-                </ul>
-            </li>
+                        </li>
+                    </ul>
+                </li>
+            </c:if>
+            <c:if test="${empty pageContext.request.userPrincipal}">
+                <li class="dropdown">
+                    <a href="login" class="dropdown-toggle"><i class="fa fa-user"></i> Login <b class="caret"></b></a>
+                </li>
+            </c:if>
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    <a href="index"><i class="fa fa-fw fa-dashboard"></i>Events</a>
                 </li>
+                <li>
+                    <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                </li>
+                <li class="active">
+                    <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+                </li>
+                <li>
+                    <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                </li>
+            </ul>
+            </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </nav>
-    <!-- MAIN                      -->
+
     <div id="page-wrapper">
 
         <div class="container-fluid">
@@ -194,84 +224,82 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Blank Page
-                        <small>Subheading</small>
-                    </h1>
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard active"></i> <a href="index.html">Dashboard</a>
+                            <i class="fa fa-dashboard"></i>  <a href="index">Trips</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <!-- /.row -->
+            <%--FILTER--%>
             <div class="row">
-                <div class="col-lg-4">
-                    <form:form method="POST" modelAttribute="trip">
-                        <span class="input-group-addon" id="basic-addon1">Name</span>
-                        <form:input  type="text" placeholder="Not found" path="title" id="title" readonly="true" class="form-control input-sm backgroundWhite" />
-
-                        <span class="input-group-addon" id="basic-addon1">Description</span>
-                        <form:input type="text" placeholder="Not found" path="description" id="description" readonly="true" class="form-control input-sm backgroundWhite" />
-
-                        <span class="input-group-addon readonly" id="basic-addon1">Created By</span>
-                    <form:input type="text" placeholder="Not found" path="createdBy" id="createdBy.username" readonly="true" class="form-control input-sm backgroundWhite" />
-
-                    </form:form>
-                </div>
-                <div class="col-lg-4">
-                    <a href="<c:url value='/editTrip/${trip.tripId}' />"><button type="button" class="btn btn-primary">Edit trip</button></a>
+                <div class="col-lg-12">
+                    <form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/trips" method="GET">
+                        <div class="form-group" >
+                            <input type="text" class="form-control" placeholder="Search" id="search" name="search" >
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
                 </div>
             </div>
-            </br>
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Trip map</h3>
-                        </div>
+                <div class="col-lg-12">
+                    <div class="table-responsive">
 
-                        <div id="googleMap"></div>
 
+                        <table data-toggle="table" data-click-to-select="true">
+
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Short description</th>
+                                <th>Creator</th>
+                            </tr>
+                            </thead>
+
+                            <tbody data-link="row" class="rowlink">
+                            <c:forEach items="${trips}" var="trip">
+                                <tr>
+                                    <td><a href="<c:url value='/trip/${trip.tripId}' />">${trip.title}</a></td>
+                                    <td><a href="<c:url value='/trip/${trip.tripId}' />">${fn:substring(trip.description,0,100)}</a></td>
+                                    <td><a href="<c:url value='/trip/${trip.tripId}' />">${trip.createdBy.username}</a></td>
+
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+
+                        </table>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Trip map</h3>
-                        </div>
-                        <div id="listContainer maxHeight">
-                            <ul id="locationList"><li id="defaultEmptyLi">Nothing found</li></ul>
-                        </div>
+                    <div>
+                        <tag:paginate limit="${limit}" offset="${offset}" count="${count}" uri="${pageContext.request.contextPath}"
+                                      next="&raquo;" previous="&laquo;" search="${search}" />
                     </div>
+
+
                 </div>
             </div>
         </div>
         <!-- /.container-fluid -->
-        <c:url value="/logout" var="logoutUrl" />
-        <form action="${logoutUrl}" method="post" id="logoutForm">
-            <input type="hidden" name="${_csrf.parameterName}"
-                   value="${_csrf.token}" />
-        </form>
-        <script>
-            function formSubmit() {
-                document.getElementById("logoutForm").submit();
-            }
-        </script>
 
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <h2>
-                Welcome : ${pageContext.request.userPrincipal.name} | <a
-                    href="javascript:formSubmit()"> Logout</a>
-            </h2>
-        </c:if>
     </div>
     <!-- /#page-wrapper -->
-    <!-- END MAIN                           -->
+
+    <%--logout--%>
+    <c:url value="/logout" var="logoutUrl" />
+    <form action="${logoutUrl}" method="post" id="logoutForm">
+        <input type="hidden" name="${_csrf.parameterName}"
+               value="${_csrf.token}" />
+    </form>
+    <script>
+        function formSubmit() {
+            document.getElementById("logoutForm").submit();
+        }
+    </script>
 </div>
 <!-- /#wrapper -->
 
 
 </body>
+
 </html>

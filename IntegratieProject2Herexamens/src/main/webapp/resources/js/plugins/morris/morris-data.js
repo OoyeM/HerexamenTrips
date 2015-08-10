@@ -1,4 +1,4 @@
-// Morris.js Charts sample data for SB Admin template
+// Morris.js Charts sample data for Trips app template
 
 $(function() {
 

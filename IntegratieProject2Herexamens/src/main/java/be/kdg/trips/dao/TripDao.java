@@ -13,4 +13,8 @@ public interface TripDao {
     public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord);
     public Trip findTripById(int tripId);
     public Long count(Integer offset,Integer limit,String keyWord);
+
+    List<Trip> findAllTripsByUsername(Integer offset, Integer limit, String keyWord, Integer id);
+
+    Long count(Integer offset, Integer limit, String keyWord, Integer user_id);
 }

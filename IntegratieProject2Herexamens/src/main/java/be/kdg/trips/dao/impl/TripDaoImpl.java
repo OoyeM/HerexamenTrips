@@ -25,13 +25,37 @@ public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
 
     @Override
     public Long count(Integer offset,Integer limit,String keyWord) {
+        keyWord=keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();
-        return (Long)criteria.setProjection(Projections.distinct(Projections.property("tripId")))
-                .createAlias("tripLabels", "labels")
-                .add(Restrictions.disjunction() // OR
-                        .add(Restrictions.like("labels.description", "%" + keyWord + "%"))
-                        .add(Restrictions.like("title", "%" + keyWord + "%"))).setProjection(Projections.rowCount()).uniqueResult();
+        if(keyWord.isEmpty()){
+            return (Long)criteria.setProjection(Projections.distinct(Projections.property("tripId")))
+                    .setProjection(Projections.rowCount()).uniqueResult();
+        }else {
+            return (Long) criteria.setProjection(Projections.distinct(Projections.property("tripId")))
+                    .createAlias("tripLabels", "labels")
+                    .add(Restrictions.disjunction() // OR
+                            .add(Restrictions.like("labels.description", "%" + keyWord + "%").ignoreCase())
+                            .add(Restrictions.like("title", "%" + keyWord + "%").ignoreCase()))
+                    .setProjection(Projections.rowCount()).uniqueResult();
         }
+        }
+
+    @Override
+    public Long count(Integer offset, Integer limit, String keyWord, Integer user_id) {
+        Criteria criteria = createEntityCriteria();
+        keyWord=keyWord.toLowerCase();
+        if(keyWord.isEmpty()){
+            return (Long)criteria.setProjection(Projections.distinct(Projections.property("tripId")))
+                    .add((Restrictions.eq("createdBy.user_id", user_id))).setProjection(Projections.rowCount()).uniqueResult();
+        }else {
+            return (Long) criteria.setProjection(Projections.distinct(Projections.property("tripId")))
+                    .createAlias("tripLabels", "labels")
+                    .add(Restrictions.disjunction() // OR
+                            .add(Restrictions.like("labels.description", "%" + keyWord + "%").ignoreCase())
+                            .add(Restrictions.like("title", "%" + keyWord + "%").ignoreCase()))
+                    .add((Restrictions.eq("createdBy.user_id", user_id))).setProjection(Projections.rowCount()).uniqueResult();
+        }
+    }
 
 
 
@@ -62,19 +86,51 @@ public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
 
     @SuppressWarnings("unchecked")
     public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord) {
+        keyWord = keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();
-        DetachedCriteria subquery =DetachedCriteria.forClass(Trip.class).
-                setProjection(Projections.distinct(Projections.property("tripId")))
-                .createAlias("tripLabels", "labels")
-                .add(Restrictions.disjunction() // OR
-                        .add(Restrictions.like("labels.description", "%" + keyWord + "%"))
-                        .add(Restrictions.like("title", "%" + keyWord + "%")));
+        if(keyWord.isEmpty()){
+            return criteria.setFirstResult(offset != null ? offset : 0)
+                    .setMaxResults(limit != null ? limit : 10).list();
+        }else {
 
-        return criteria
-                .add(Subqueries.propertyIn("tripId",subquery))
-                        .setFirstResult(offset != null ? offset : 0)
-                        .setMaxResults(limit != null ? limit : 10).list();
+            DetachedCriteria subquery = DetachedCriteria.forClass(Trip.class).
+                    setProjection(Projections.distinct(Projections.property("tripId")))
+                    .createAlias("tripLabels", "labels")
+                    .add(Restrictions.disjunction() // OR
+                            .add(Restrictions.like("labels.description", "%" + keyWord + "%").ignoreCase())
+                            .add(Restrictions.like("title", "%" + keyWord + "%").ignoreCase()));
+
+            return criteria
+                    .add(Subqueries.propertyIn("tripId", subquery))
+                    .setFirstResult(offset != null ? offset : 0)
+                    .setMaxResults(limit != null ? limit : 10).list();
+        }
     }
+    @Override
+    public List<Trip> findAllTripsByUsername(Integer offset, Integer limit, String keyWord, Integer id) {
+        keyWord=keyWord.toLowerCase();
+        Criteria criteria = createEntityCriteria();
+        if(keyWord.isEmpty()){
+            return criteria.add((Restrictions.eq("createdBy.user_id", id))).setFirstResult(offset != null ? offset : 0)
+                    .setMaxResults(limit != null ? limit : 10).list();
+        }else {
+            DetachedCriteria subquery = DetachedCriteria.forClass(Trip.class).
+                    setProjection(Projections.distinct(Projections.property("tripId")))
+                    .createAlias("tripLabels", "labels")
+                    .add(Restrictions.disjunction() // OR
+                                    .add(Restrictions.like("labels.description", "%" + keyWord + "%").ignoreCase())
+                                    .add(Restrictions.like("title", "%" + keyWord + "%").ignoreCase())
+                    )
+                    .add((Restrictions.eq("createdBy.user_id", id)));
+
+            return criteria
+                    .add(Subqueries.propertyIn("tripId", subquery))
+                    .setFirstResult(offset != null ? offset : 0)
+                    .setMaxResults(limit != null ? limit : 10).list();
+        }
+    }
+
+
 
 
 }

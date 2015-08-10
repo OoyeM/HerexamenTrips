@@ -1,7 +1,10 @@
 package be.kdg.trips.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -17,12 +20,37 @@ public class Event implements Serializable {
     @ManyToOne
     @JoinColumn(name = "trip_id")
     private Trip trip;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "events")
-    private Set<User> invitedUsers;
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "events")
+//    private Set<User> invitedUsers;
+
+    @OneToMany(mappedBy = "eventId")
+    private Set<UserEvent> userEvents;
+
     @ManyToOne
     @JoinColumn(name = "createdBy")
     private User createdBy;
+    @Column(name="TITLE", length=50, nullable=true)
+    private String title;
+    @Column(name="eventDate", columnDefinition="DATETIME default SYSDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    private Date eventDate;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
+    }
 
     public int getEventId() {
         return eventId;
@@ -40,12 +68,14 @@ public class Event implements Serializable {
         this.trip = trip;
     }
 
-    public Set<User> getInvitedUsers() {
-        return invitedUsers;
+
+
+    public Set<UserEvent> getUserEvents() {
+        return userEvents;
     }
 
-    public void setInvitedUsers(Set<User> invitedUsers) {
-        this.invitedUsers = invitedUsers;
+    public void setUserEvents(Set<UserEvent> userEvents) {
+        this.userEvents = userEvents;
     }
 
     public User getCreatedBy() {

@@ -1,5 +1,8 @@
 package be.kdg.trips.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,10 +11,14 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
 	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name ="user_id")
 	private Integer user_id;
+	@NotEmpty
+	@Email
 	@Column(name = "username", unique = true, nullable = false, length = 45)
 	private String username;
+	@NotEmpty
 	@Column(name = "password", nullable = false, length = 60)
 	private String password;
 	@Column(name = "enabled", nullable = false)
@@ -20,16 +27,17 @@ public class User {
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
 	@OneToMany(mappedBy = "createdBy")
 	private Set<Trip> trips;
-
-
 	@OneToMany(mappedBy = "createdBy")
 	private Set<Event> createdEvents;
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "User_Events", joinColumns = {
-			@JoinColumn(name = "user_id", nullable = false, updatable = false)},
-			inverseJoinColumns = {@JoinColumn(name = "event_id",
-					nullable = false, updatable = false)})
-	private Set<Event> events;
+	@OneToMany(mappedBy = "userId")
+	private Set<UserEvent> invitedEvents;
+
+//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinTable(name = "User_Events", joinColumns = {
+//			@JoinColumn(name = "user_id", nullable = false, updatable = false)},
+//			inverseJoinColumns = {@JoinColumn(name = "event_id",
+//					nullable = false, updatable = false)})
+//	private Set<Event> events;
 
 
 
@@ -114,11 +122,11 @@ public class User {
 		this.createdEvents = createdEvents;
 	}
 
-	public Set<Event> getEvents() {
-		return events;
+	public Set<UserEvent> getInvitedEvents() {
+		return invitedEvents;
 	}
 
-	public void setEvents(Set<Event> events) {
-		this.events = events;
+	public void setInvitedEvents(Set<UserEvent> invitedEvents) {
+		this.invitedEvents = invitedEvents;
 	}
 }

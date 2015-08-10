@@ -20,5 +20,9 @@ public interface TripService {
     void deleteTripById(int id);
 
     List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord);
-    public Long count(Integer offset,Integer limit,String keyWord);
+    Long count(Integer offset,Integer limit,String keyWord);
+
+    List<Trip> findAllTripsByUsername(Integer offset, Integer limit, String keyWord, Integer id);
+
+    Long count(Integer offset, Integer limit, String keyWord, Integer user_id);
 }

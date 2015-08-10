@@ -1,4 +1,4 @@
-// Flot Charts sample data for SB Admin template
+// Flot Charts sample data for Trips app template
 
 // Flot Line Chart with Tooltips
 $(document).ready(function() {

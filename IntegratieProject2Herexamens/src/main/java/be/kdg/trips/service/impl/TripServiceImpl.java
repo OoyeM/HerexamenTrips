@@ -5,7 +5,6 @@ package be.kdg.trips.service.impl;
 */
 
 import be.kdg.trips.dao.TripDao;
-import be.kdg.trips.dao.TripLocationDao;
 import be.kdg.trips.model.Trip;
 import be.kdg.trips.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,6 @@ public class TripServiceImpl implements TripService {
 
     @Autowired
     private TripDao tripDao;
-
-    @Autowired
-    TripLocationDao tripLocationDao;
 
     public Trip findTripById(int id) {
         return tripDao.findTripById(id);
@@ -57,6 +53,14 @@ public class TripServiceImpl implements TripService {
     }
     public Long count(Integer offset,Integer limit,String keyWord){
        return tripDao.count(offset,limit,keyWord);
+    }
+    public Long count(Integer offset, Integer limit, String keyWord, Integer user_id){
+        return tripDao.count(offset,limit,keyWord,user_id);
+    }
+
+    @Override
+    public List<Trip> findAllTripsByUsername(Integer offset, Integer limit, String keyWord, Integer id) {
+        return tripDao.findAllTripsByUsername( offset,  limit,  keyWord,  id);
     }
 
 }
