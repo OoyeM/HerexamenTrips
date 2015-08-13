@@ -8,6 +8,13 @@ import java.util.List;
  * Created by Matthias on 10/08/2015.
  */
 public interface UserEventService {
-    List<UserEvent> getAllUserEvents(int eventId);
-    void updateEvent(UserEvent Event);
+    List<UserEvent> getAllUserEvents(int eventId) throws Exception;
+    void updateEvent(UserEvent Event) throws Exception;
+
+    void saveUserEventService(UserEvent userEvent) throws Exception;
+
+
+    void removeUserEvent(Integer userId, int eventId) throws Exception;
+
+    UserEvent getUserEventByEIdUId(Integer user_id, int eventId) throws Exception;
 }

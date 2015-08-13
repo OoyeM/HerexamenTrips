@@ -3,6 +3,7 @@ package be.kdg.trips.dao.impl;
 import be.kdg.trips.dao.AbstractDao;
 import be.kdg.trips.dao.TripDao;
 import be.kdg.trips.model.Trip;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.DetachedCriteria;
@@ -18,13 +19,15 @@ import java.util.List;
 */
 @Repository("TripDao")
 public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
-
-    public Trip findTripById(int id) {
+    private static final Logger logger = Logger.getLogger(TripDaoImpl.class);
+    public Trip findTripById(int id) throws Exception {
         return getByKey(id);
     }
 
+
+
     @Override
-    public Long count(Integer offset,Integer limit,String keyWord) {
+    public Long count(Integer offset,Integer limit,String keyWord)throws Exception {
         keyWord=keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();
         if(keyWord.isEmpty()){
@@ -41,7 +44,7 @@ public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
         }
 
     @Override
-    public Long count(Integer offset, Integer limit, String keyWord, Integer user_id) {
+    public Long count(Integer offset, Integer limit, String keyWord, Integer user_id) throws Exception {
         Criteria criteria = createEntityCriteria();
         keyWord=keyWord.toLowerCase();
         if(keyWord.isEmpty()){
@@ -59,11 +62,11 @@ public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
 
 
 
-    public void saveTrip(Trip employee) {
+    public void saveTrip(Trip employee)throws Exception {
         persist(employee);
     }
 
-    public void deleteTripById(int tripId) {
+    public void deleteTripById(int tripId)throws Exception {
         Query deleteTripLabel = getSession().createSQLQuery("delete from Trip_label where TRIP_ID = :tripId");
         deleteTripLabel.setInteger("tripId", tripId);
         deleteTripLabel.executeUpdate();
@@ -85,7 +88,7 @@ public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord) {
+    public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord)throws Exception {
         keyWord = keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();
         if(keyWord.isEmpty()){
@@ -107,7 +110,7 @@ public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
         }
     }
     @Override
-    public List<Trip> findAllTripsByUsername(Integer offset, Integer limit, String keyWord, Integer id) {
+    public List<Trip> findAllTripsByUsername(Integer offset, Integer limit, String keyWord, Integer id)throws Exception {
         keyWord=keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();
         if(keyWord.isEmpty()){

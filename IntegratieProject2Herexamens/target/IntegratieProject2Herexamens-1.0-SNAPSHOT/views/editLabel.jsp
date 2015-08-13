@@ -77,13 +77,13 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li>
-                <a href="${pageContext.request.contextPath}/index"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                <a href="${pageContext.request.contextPath}/index"><i class="glyphicon glyphicon-calendar"></i> Events</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                <a href="${pageContext.request.contextPath}/myEvents"><i class="glyphicon glyphicon-map-marker"></i> My Events</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+                <a href="${pageContext.request.contextPath}/trips"><i class="glyphicon glyphicon-road"></i> Trips</a>
             </li>
             <li class="active">
                 <a href="${pageContext.request.contextPath}/myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
@@ -104,9 +104,20 @@
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i> <a href="${pageContext.request.contextPath}/index">Labels</a>
+                <i class="glyphicon glyphicon-road"></i> <a
+                    href="${pageContext.request.contextPath}">Trips</a>
+            </li>
+            <li>
+                <a href="${pageContext.request.contextPath}/editTrip/${tripId}">Trip: ${tripId}</a>
+            </li>
+            <li>
+                <i class="glyphicon glyphicon-comment"></i> Labels
+            </li>
+            <li>
+            <a href="${pageContext.request.contextPath}/editTrip/${tripId}"><button type="button" class="btn"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>  Back</button></a>
             </li>
         </ol>
+
     </div>
 </div>
 <%--FILTER--%>
@@ -154,13 +165,6 @@
 </form:form>
     </div>
     </div>
-    </br>
-    <div class="row">
-        <div class="col-lg-12">
-       <a href="${pageContext.request.contextPath}/editTrip/${tripId}/editLabels"><button type="button" class="btn btn-primary navbar-left">Back</button></a>
-        </div>
-    </div>
-
     </div>
     <!-- /.container-fluid -->
 

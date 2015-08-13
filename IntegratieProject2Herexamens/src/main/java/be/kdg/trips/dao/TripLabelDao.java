@@ -8,8 +8,8 @@ import java.util.List;
  * Created by Matthias on 5/08/2015.
  */
 public interface TripLabelDao {
-    public void saveTripLocation(TripLabel tripLabel);
-    public List<TripLabel> findAllLabelsById(int tripId);
+    public void saveTripLocation(TripLabel tripLabel) throws Exception;
+    public List<TripLabel> findAllLabelsById(int tripId) throws Exception;
 
-    void deleteLabel(int labelId);
+    void deleteLabel(int labelId) throws Exception;
 }

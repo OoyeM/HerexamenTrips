@@ -17,19 +17,19 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
 
     @Override
-    public User findByUserName(String login) {
+    public User findByUserName(String login)throws Exception {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("username", login));
         return (User) criteria.list().get(0);
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUser(User user)throws Exception {
         persist(user);
     }
 
     @Override
-    public List<User> getAllInvitedUsers(int eventId) {
+    public List<User> getAllInvitedUsers(int eventId) throws Exception{
         Criteria criteria = createEntityCriteria();
 
         return criteria.createAlias("invitedEvents", "userEvents").

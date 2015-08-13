@@ -87,16 +87,16 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a href="events"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                    <a href="${pageContext.request.contextPath}/events"><i class="glyphicon glyphicon-calendar"></i> Events</a>
                 </li>
                 <li class="active">
-                    <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                    <a href="${pageContext.request.contextPath}/myEvents"><i class="glyphicon glyphicon-map-marker"></i> My Events</a>
                 </li>
                 <li>
-                    <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+                    <a href="${pageContext.request.contextPath}/trips"><i class="glyphicon glyphicon-road"></i> Trips</a>
                 </li>
                 <li>
-                    <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                    <a href="${pageContext.request.contextPath}/myTrips"><i class="glyphicon glyphicon-edit"></i> My Trips</a>
                 </li>
             </ul>
         </div>
@@ -112,10 +112,13 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="index">Events</a>
+                            <a href="${pageContext.request.contextPath}/myEvents"> <i class="glyphicon glyphicon-calendar"></i> Events</a>
                         </li>
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="index">Add event</a>
+                            <i class="glyphicon glyphicon-plus"></i> Add event</a>
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/myEvents"><button type="button" class="btn"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>  Back</button></a>
                         </li>
                     </ol>
                 </div>
@@ -125,26 +128,29 @@
             <div class="row">
                 <div class="col-lg-4">
                     <form:form id="eventForm" modelAttribute="event"
-                               action="${pageContext.request.contextPath}/myEvents/create/${event.eventId}/1"
+                               action="${pageContext.request.contextPath}/myEvents/create/${event.eventId}"
                                method="post">
                         <div class="form-group">
                             <label for="title">Name:</label>
                             <form:input type="text" path="title" class="form-control" id="title"/>
                         </div>
+                        <label for="eventDate">Date:</label>
+
                         <div class='input-group date' id='datetimepicker1'>
-                            <label for="eventDate">Date:</label>
+
                             <form:input type="text" path="eventDate" class="form-control datepicker" id="eventDate"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                         </div>
+                        </br>
                         <button type="submit" class="btn btn-default">Save</button>
                     </form:form>
                 </div>
                 <div class="col-lg-8">
                     <div class="table-responsive">
-
-                        <table data-toggle="table" data-click-to-select="true">
+                        <label for="userTable">Users:</label>
+                        <table data-toggle="table" data-click-to-select="true" id="userTable">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -157,20 +163,17 @@
                                 <tr>
                                     <td>${invitedUser.username}
                                         <a class="floatRight"
-                                           href="<c:url value='/removeInvite/${event.eventId}/${invitedUser.user_id}' />"><span
+                                           href="<c:url value='/myEvents/create/${event.eventId}/removeUser/${invitedUser.username}/' />"><span
                                                 class="glyphicon glyphicon-trash glyphColorDelete"
                                                 aria-hidden="true"></span></a>
                                     </td>
                                     <td>
-
-                                        <c:set var="check" value="${userEvents.get(loop.index).accepted}"/>
                                         <c:if test="${userEvents.get(loop.index).accepted}">
                                             <span class="glyphicon glyphicon-ok green" aria-hidden="true"></span>
                                         </c:if>
                                         <c:if test="${not userEvents.get(loop.index).accepted}">
                                             <span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>
                                         </c:if>
-
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -178,15 +181,59 @@
 
                         </table>
                     </div>
+                    <form:form method="POST" id="userForm" class="navbar-form navbar-left" action="/Trips/myEvents/create/${event.eventId}/addUser">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"> Add user</button>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Not found" name="username" id="username"
+                                        class="form-control"/>
+                        </div>
 
+                    </form:form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form:form method="POST" id="tripForm" class="navbar-form navbar-left" action="/Trips/myEvents/${event.eventId}/addTripToEvent/">
+
+                        <div class="form-group">
+                            <label for="title">Current trip:</label>
+                            <c:if test="${event.trip ne null}">
+                        ${event.trip.tripId}
+                            </c:if>
+                            <c:if test="${event.trip eq null}">
+                                No trip selected.
+                            </c:if>
+                        </div>
+                        <c:if test="${event.trip ne null}">
+                            <div class="form-group">
+                                <a href="<c:url value='/trip/${event.trip.tripId}' />">
+                                    <button type="button" class="btn btn-danger">View trip</button>
+                                </a>
+                            </div>
+                        </c:if>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"> Add trip</button>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Not found" name="addedTripId" id="addedTripId"
+                                   class="form-control"/>
+                        </div>
+
+                            <a href="<c:url value='/trips' />">
+                                <button type="button" class="btn btn-danger">Browse trips</button>
+                            </a>
+
+                    </form:form>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /.container-fluid -->
 
-</div>
-<!-- /#page-wrapper -->
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
@@ -201,7 +248,29 @@
         document.getElementById("logoutForm").submit();
     }
 </script>
-
+<c:if test="${not empty error}">
+    <div class="modal fade in" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Error:</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="error">${error}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <script type="text/javascript">
+        $(window).load(function(){
+            $('#myModal').modal('show');
+        });
+    </script>
+</c:if>
 </body>
 
 </html>

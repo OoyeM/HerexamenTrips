@@ -18,7 +18,7 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
-    public void createRole(User user) {
+    public void createRole(User user) throws Exception {
         roleDao.create(user);
     }
 

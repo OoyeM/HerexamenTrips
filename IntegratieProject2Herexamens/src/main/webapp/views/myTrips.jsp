@@ -14,8 +14,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Trips app - Bootstrap Admin Template</title>
-    <title>Herexamen_trips</title>
+    <title>Trips app</title>
+
 
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
@@ -77,16 +77,16 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a href="events"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                    <a href="${pageContext.request.contextPath}/events"><i class="glyphicon glyphicon-calendar"></i> Events</a>
                 </li>
                 <li>
-                    <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                    <a href="${pageContext.request.contextPath}/myEvents"><i class="glyphicon glyphicon-map-marker"></i> My Events</a>
                 </li>
                 <li>
-                    <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+                    <a href="${pageContext.request.contextPath}/trips"><i class="glyphicon glyphicon-road"></i> Trips</a>
                 </li>
                 <li class="active">
-                    <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                    <a href="${pageContext.request.contextPath}/myTrips"><i class="glyphicon glyphicon-edit"></i> My Trips</a>
                 </li>
             </ul>
 
@@ -104,7 +104,7 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="index">Events</a>
+                            <a href="index"><i class="glyphicon glyphicon-road"></i> My Trips</a>
                         </li>
                     </ol>
                 </div>
@@ -112,7 +112,7 @@
             <%--FILTER--%>
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}"
+                    <form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/myTrips"
                           method="GET">
                         <a href="<c:url value='/new' />">
                             <button type="button" class="btn btn-primary"> Add trip</button>

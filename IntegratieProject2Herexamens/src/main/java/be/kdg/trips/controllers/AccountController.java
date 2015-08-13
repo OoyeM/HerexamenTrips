@@ -56,7 +56,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView createUser(@Valid User user, BindingResult result){
+    public ModelAndView createUser(@Valid User user, BindingResult result) throws Exception {
         if (result.hasErrors()) {
             return new ModelAndView("registration");
         }
@@ -89,5 +89,7 @@ public class AccountController {
 
         return error;
     }
+
+
 
 }

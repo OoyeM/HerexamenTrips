@@ -17,17 +17,17 @@ import java.util.List;
 
 public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDao {
     @Override
-    public Event findEventById(int id) {
+    public Event findEventById(int id)throws Exception {
         return getByKey(id);
     }
 
     @Override
-    public void saveEvent(Event event) {
+    public void saveEvent(Event event)throws Exception {
         persist(event);
     }
 
     @Override
-    public void deleteEventById(int id) {
+    public void deleteEventById(int id)throws Exception {
         Query deleteUserEvents = getSession().createSQLQuery("delete from user_events where event_id = :eventId");
         deleteUserEvents.setInteger("eventId", id);
         deleteUserEvents.executeUpdate();
@@ -37,25 +37,25 @@ public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDa
     }
 
     @Override
-    public List<Event> findAllEvents(Integer offset, Integer limit, String keyWord, Integer user_id) {
+    public List<Event> findAllEvents(Integer offset, Integer limit, String keyWord, Integer user_id)throws Exception {
         keyWord=keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();
         if(keyWord.isEmpty()){
             DetachedCriteria subquery = DetachedCriteria.forClass(Event.class).setProjection(Projections.distinct(Projections.property("eventId")))
-                    .createAlias("invitedUsers", "invitedUsersTable")
-                    .add(Restrictions.eq("invitedUsersTable.user_id", user_id));
+                    .createAlias("userEvents", "userEventsTable")
+                    .add(Restrictions.eq("userEventsTable.userId", user_id));
 
-            return criteria
+            return (List<Event>)criteria
                     .add(Subqueries.propertyIn("eventId", subquery)).addOrder(Order.asc("eventId"))
                     .setFirstResult(offset != null ? offset : 0)
                     .setMaxResults(limit != null ? limit : 10).list();
         }else {
             DetachedCriteria subquery = DetachedCriteria.forClass(Event.class).setProjection(Projections.distinct(Projections.property("eventId")))
-                    .createAlias("invitedUsers", "invitedUsersTable")
+                    .createAlias("userEvents", "userEventsTable")
                     .add(Restrictions.like("title", "%" + keyWord + "%").ignoreCase())
-                    .add(Restrictions.eq("invitedUsersTable.user_id", user_id));
+                    .add(Restrictions.eq("userEventsTable.userId", user_id));
 
-            return criteria
+            return (List<Event>)criteria
                     .add(Subqueries.propertyIn("eventId", subquery)).addOrder(Order.asc("eventId"))
                     .setFirstResult(offset != null ? offset : 0)
                     .setMaxResults(limit != null ? limit : 10).list();
@@ -63,24 +63,25 @@ public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDa
     }
 
     @Override
-    public Long countInvited(Integer offset, Integer limit, String keyWord,Integer user_id) {
+    public Long countInvited(Integer offset, Integer limit, String keyWord,Integer user_id)throws Exception {
         Criteria criteria = createEntityCriteria();
         keyWord=keyWord.toLowerCase();
         if(keyWord.isEmpty()){
-            return (Long)criteria.setProjection(Projections.distinct(Projections.property("eventId"))).createAlias("invitedUsers", "invitedUsersTable")
-                    .add(Restrictions.eq("invitedUsersTable.user_id", user_id))
+            return (Long)criteria.setProjection(Projections.distinct(Projections.property("eventId")))
+                    .createAlias("userEvents", "userEventsTable")
+                    .add(Restrictions.eq("userEventsTable.userId", user_id))
                     .setProjection(Projections.rowCount()).uniqueResult();
         }else {
             return (Long) criteria.setProjection(Projections.distinct(Projections.property("eventId")))
-                    .createAlias("invitedUsers", "invitedUsersTable")
-                    .add(Restrictions.eq("invitedUsersTable.user_id", user_id))
+                    .createAlias("userEvents", "userEventsTable")
+                    .add(Restrictions.eq("userEventsTable.userId", user_id))
                     .add(Restrictions.like("title", "%" + keyWord + "%").ignoreCase())
                     .setProjection(Projections.rowCount()).uniqueResult();
         }
     }
 
     @Override
-    public Long count(Integer offset, Integer limit, String keyWord, Integer user_id) {
+    public Long count(Integer offset, Integer limit, String keyWord, Integer user_id)throws Exception {
         Criteria criteria = createEntityCriteria();
         keyWord=keyWord.toLowerCase();
         if(keyWord.isEmpty()){
@@ -94,7 +95,7 @@ public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDa
     }
 
     @Override
-    public List<Event> findAllEventsByUsername(Integer offset, Integer limit, String keyWord, Integer id) {
+    public List<Event> findAllEventsByUsername(Integer offset, Integer limit, String keyWord, Integer id)throws Exception {
         keyWord = keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();
         if (keyWord.isEmpty()) {

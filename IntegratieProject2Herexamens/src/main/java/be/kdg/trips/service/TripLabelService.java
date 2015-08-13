@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface TripLabelService {
 
-    void saveTrip(TripLabel tripLabel);
-    List<TripLabel> findAllTripLabels(Integer tripId);
+    void saveTrip(TripLabel tripLabel) throws Exception;
+    List<TripLabel> findAllTripLabels(Integer tripId) throws Exception;
 
-    void deleteLabel(int labelId);
+    void deleteLabel(int labelId) throws Exception;
 }

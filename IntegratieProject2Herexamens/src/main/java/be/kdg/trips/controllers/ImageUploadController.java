@@ -38,18 +38,19 @@ public class ImageUploadController {
     TripImageService imageService;
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value="/singleUpload/{tripLocationId}",method = RequestMethod.GET)
-    public ModelAndView singleUpload(@PathVariable int tripLocationId,ModelMap model){
-        //model.addAttribute("imageModel",new ImageViewModel());
-        //model.addAttribute("tripLocationId",tripLocationId);
+    @RequestMapping(value="/singleUpload/{tripId}/{tripLocationId}",method = RequestMethod.GET)
+    public ModelAndView singleUpload(@PathVariable int tripId,@PathVariable int tripLocationId,ModelMap model){
+        model.addAttribute("tripId",tripId);
+        model.addAttribute("tripLocationId",tripLocationId);
         return new ModelAndView("singleUpload");
     }
     @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value="/singleUpload/{tripLocationId}", method= RequestMethod.POST )
+    @RequestMapping(value="/singleUpload/{tripId}/{tripLocationId}", method= RequestMethod.POST )
     public @ResponseBody
     ModelAndView singleSave(@RequestParam("file") MultipartFile file,
                             @RequestParam(value = "desc",required = false) String desc ,
                             @PathVariable int tripLocationId,
+                            @PathVariable int tripId,
                             HttpServletRequest request){
         String fileName = null;
         if (!file.isEmpty()) {
@@ -62,7 +63,7 @@ public class ImageUploadController {
 
                 fileName = file.getOriginalFilename();
                 byte[] bytes = file.getBytes();
-                String filePath = request.getSession().getServletContext().getRealPath("/")+"WEB-INF\\resources\\images\\"+imgId+"."+FilenameUtils.getExtension(fileName);;
+                String filePath = request.getSession().getServletContext().getRealPath("/")+"resources\\images\\"+imgId+"."+FilenameUtils.getExtension(fileName);;
                 File newFile = new File(filePath);
 
                 BufferedOutputStream buffStream =
@@ -78,7 +79,7 @@ public class ImageUploadController {
 
 
                 //or wrtite to a file
-                String filePath2 = request.getSession().getServletContext().getRealPath("/")+"WEB-INF\\resources\\images\\thumb"+imgId+"."+FilenameUtils.getExtension(fileName);;
+                String filePath2 = request.getSession().getServletContext().getRealPath("/")+"resources\\images\\thumb"+imgId+"."+FilenameUtils.getExtension(fileName);;
 
                 File f2 = new File(filePath2);
 
@@ -90,7 +91,7 @@ public class ImageUploadController {
                 tripImage.setImgUrl( "/Trips/resources/images/"+imgId+"."+FilenameUtils.getExtension(fileName));
                 tripImage.setThumbUrl("/Trips/resources/images/thumb"+imgId+"."+FilenameUtils.getExtension(fileName));
                 imageService.updateTripImage(tripImage);
-                return new ModelAndView("redirect:/createLocation/"+tripLocationId);
+                return new ModelAndView("redirect:/createLocation/"+tripId+"/"+tripLocationId);
             } catch (Exception e) {
                 return new ModelAndView("singleUpload");
             }

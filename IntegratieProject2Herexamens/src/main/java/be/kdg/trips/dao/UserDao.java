@@ -8,8 +8,8 @@ import java.util.List;
  * Created by Matthias on 2/08/2015.
  */
 public interface UserDao {
-    User findByUserName(String login);
-    void saveUser(User user);
+    User findByUserName(String login) throws Exception;
+    void saveUser(User user) throws Exception;
 
-    List<User> getAllInvitedUsers(int eventId);
+    List<User> getAllInvitedUsers(int eventId) throws Exception;
 }

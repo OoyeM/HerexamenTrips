@@ -3,6 +3,7 @@ package be.kdg.trips.service.impl;
 import be.kdg.trips.dao.UserDao;
 import be.kdg.trips.model.UserRole;
 import be.kdg.trips.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,15 +22,21 @@ import java.util.Set;
 @Service("userDetailsService")
 @Transactional
 public class MyUserDetailsService implements UserDetailsService, UserService {
-
+	private static final Logger logger = Logger.getLogger(MyUserDetailsService.class);
 	@Autowired
 	private UserDao userDao;
 
 	@Transactional(readOnly=true)
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-	
-		be.kdg.trips.model.User user = userDao.findByUserName(username);
+
+		be.kdg.trips.model.User user = null;
+		try {
+			user = userDao.findByUserName(username);
+		} catch (Exception e) {
+			logger.error("Error username",e);
+			throw new UsernameNotFoundException(username);
+		}
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
 
 		return buildUserForAuthentication(user, authorities);
@@ -56,17 +63,17 @@ public class MyUserDetailsService implements UserDetailsService, UserService {
 		return Result;
 	}
 
-	public void createUser(be.kdg.trips.model.User user){
+	public void createUser(be.kdg.trips.model.User user) throws Exception {
 		user.setEnabled(true);
 		userDao.saveUser(user);
 	}
 
-	public be.kdg.trips.model.User getUser(String username){
+	public be.kdg.trips.model.User getUser(String username) throws Exception {
 		return userDao.findByUserName(username);
 	}
 
 	@Override
-	public List<be.kdg.trips.model.User> getAllInvitedUsers(int eventId) {
+	public List<be.kdg.trips.model.User> getAllInvitedUsers(int eventId) throws Exception {
 		return userDao.getAllInvitedUsers(eventId);
 	}
 }

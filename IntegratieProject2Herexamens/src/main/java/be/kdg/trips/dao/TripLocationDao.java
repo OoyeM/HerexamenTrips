@@ -8,8 +8,10 @@ import java.util.List;
 * Created by Matthias on 30/07/2015.
 */
 public interface TripLocationDao {
-    public void saveTripLocation(TripLocation tripLocation);
-    public void deleteLocationById(int tripLocationId);
-    public List<TripLocation> findAllLocationsById(int tripId);
-    public TripLocation findLocationById(int tripLocationId);
+    void saveTripLocation(TripLocation tripLocation) throws Exception;
+    void deleteLocationById(int tripLocationId) throws Exception;
+    List<TripLocation> findAllLocationsById(int tripId) throws Exception;
+    TripLocation findLocationById(int tripLocationId) throws Exception;
+
+    TripLocation findLocationByIdAndOrderNr(int tripId, int orderNumber) throws Exception;
 }

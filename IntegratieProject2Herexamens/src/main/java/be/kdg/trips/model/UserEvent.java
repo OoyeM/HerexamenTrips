@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class UserEvent implements Serializable {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "userevent_id")
     private Integer usereventId;
 
@@ -79,4 +80,5 @@ public class UserEvent implements Serializable {
     public void setAccepted(boolean accepted) {
         this.accepted = accepted;
     }
+
 }

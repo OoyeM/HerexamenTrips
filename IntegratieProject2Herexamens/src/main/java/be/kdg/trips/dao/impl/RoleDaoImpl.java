@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository("RoleDao")
 public class RoleDaoImpl extends AbstractDao<Integer,UserRole> implements RoleDao {
     @Override
-    public void create(User user) {
+    public void create(User user)throws Exception {
         UserRole userRole = new UserRole();
         userRole.setUser(user);
         userRole.setRole("ROLE_USER");

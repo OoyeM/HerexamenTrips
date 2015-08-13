@@ -17,26 +17,26 @@ import java.util.List;
 public class TripImageDaoImpl extends AbstractDao<Integer,TripImage> implements TripImageDao {
 
     @Override
-    public void saveTripImage(TripImage tripImage) {
+    public void saveTripImage(TripImage tripImage)throws Exception {
         persist(tripImage);
     }
 
     @Override
-    public void deleteImageById(int tripImageId) {
+    public void deleteImageById(int tripImageId)throws Exception {
         Query deleteTripImage = getSession().createSQLQuery("delete from trip_image where IMAGE_ID = :imageId");
         deleteTripImage.setInteger("imageId", tripImageId);
         deleteTripImage.executeUpdate();
     }
 
     @Override
-    public List<TripImage> findAllImagesById(int locationId) {
+    public List<TripImage> findAllImagesById(int locationId)throws Exception {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("tripLocation.locationId", locationId));
         return criteria.list();
     }
 
     @Override
-    public TripImage findImageById(int tripImageId) {
+    public TripImage findImageById(int tripImageId)throws Exception {
         return getByKey(tripImageId);
     }
 }

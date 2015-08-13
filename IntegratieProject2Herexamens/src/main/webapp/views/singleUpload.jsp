@@ -78,21 +78,21 @@
             <ul class="nav navbar-nav side-nav">
                 <c:if test="${not empty pageContext.request.userPrincipal}">
                     <li>
-                        <a href="index"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                        <a href="${pageContext.request.contextPath}/index"><i class="glyphicon glyphicon-calendar"></i> Events</a>
                     </li>
                     <li>
-                        <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                        <a href="${pageContext.request.contextPath}/myEvents"><i class="glyphicon glyphicon-map-marker"></i> My Events</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/trips"><i class="glyphicon glyphicon-road"></i> Trips</a>
                     </li>
                     <li class="active">
-                        <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
-                    </li>
-                    <li>
-                        <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                        <a href="${pageContext.request.contextPath}/myTrips"><i class="glyphicon glyphicon-edit"></i> My Trips</a>
                     </li>
                 </c:if>
                 <c:if test="${empty pageContext.request.userPrincipal}">
                     <li>
-                        <a href="${pageContext.request.contextPath}"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
+                        <a href="${pageContext.request.contextPath}"><i class="glyphicon glyphicon-road"></i> Trips</a>
                     </li>
                 </c:if>
             </ul>
@@ -108,16 +108,20 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
-                        <li>
-                            <i class="glyphicon glyphicon-list-alt active"></i> <a
-                                href="${pageContext.request.contextPath}">Trips</a>
+                        <li><a href="${pageContext.request.contextPath}">
+                            <i class="glyphicon glyphicon-road"></i> Trips</a>
                         </li>
                         <li>
-                            <i class="glyphicon glyphicon-road active"></i><a
-                                href="${pageContext.request.contextPath}/trip/${tripId}">Trip: ${tripId}</a>
+                            <a href="${pageContext.request.contextPath}/trip/${tripId}">Trip: ${tripId}</a>
                         </li>
                         <li>
-                            <i class="glyphicon glyphicon-road active"></i>Triplocation: ${tripLocation.locationId}
+                            <a href="${pageContext.request.contextPath}/createLocation/${tripId}/${tripLocationId}">Triplocation: ${tripLocationId}</a>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-picture"></i> Add image
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/createLocation/${tripId}/${tripLocationId}"><button type="button" class="btn"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>  Back</button></a>
                         </li>
                     </ol>
                 </div>
@@ -127,15 +131,20 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-6">
-                    <form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/singleUpload/${tripLocationId}">
-                        Upload File:
-                        <div class="input-group">
-                            <input type="file" name="file">
+                    <form method="POST" enctype="multipart/form-data" action="${pageContext.request.contextPath}/singleUpload/${tripId}/${tripLocationId}?${_csrf.parameterName}=${_csrf.token}">
+                        <div class="form-group">
+                            <label for="file">UploadFile:</label>
+                            <input type="file" name="file" id="file" class="form-control">
                         </div>
-                        <div class="input-group">
-                            <span>Description: <input type="text" name="desc" class="input-sm" maxlength="50"/></span>
+                        <div class="form-group">
+                            <label for="desc">Description:</label>
+                            <input type="text" name="desc" class="form-control" maxlength="50" id="desc">
                         </div>
-                        <div class="input-group">
+
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                        <div class="form-group">
                             <input type="submit" value="Upload">
                         </div>
                     </form>

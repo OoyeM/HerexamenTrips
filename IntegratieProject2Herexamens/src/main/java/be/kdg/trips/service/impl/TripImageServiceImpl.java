@@ -19,17 +19,17 @@ public class TripImageServiceImpl implements TripImageService {
     TripImageDao tripImageDao;
 
     @Override
-    public void saveTripImage(TripImage tripImage) {
+    public void saveTripImage(TripImage tripImage) throws Exception {
         tripImageDao.saveTripImage(tripImage);
     }
 
     @Override
-    public TripImage getTripImageById(int imageId) {
+    public TripImage getTripImageById(int imageId) throws Exception {
         return tripImageDao.findImageById(imageId);
     }
 
     @Override
-    public void updateTripImage(TripImage tripImage) {
+    public void updateTripImage(TripImage tripImage) throws Exception {
         TripImage entity = tripImageDao.findImageById(tripImage.getImageId());
         if (entity != null) {
             entity.setImgUrl(tripImage.getImgUrl());
@@ -40,7 +40,7 @@ public class TripImageServiceImpl implements TripImageService {
     }
 
     @Override
-    public List<TripImage> getAllLocationImages(int tripLocationId) {
+    public List<TripImage> getAllLocationImages(int tripLocationId) throws Exception {
        return tripImageDao.findAllImagesById(tripLocationId);
     }
 }

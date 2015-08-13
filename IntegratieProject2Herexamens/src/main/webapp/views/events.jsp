@@ -3,7 +3,7 @@
 <%@ taglib prefix="tag" uri="WEB-INF/customTaglib.tld" %>
 <%@page session="true"%>
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,8 +14,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Trips app - Bootstrap Admin Template</title>
-  <title>Herexamen_trips</title>
+  <title>Trips app</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
@@ -66,7 +65,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name} <b class="caret"></b></a>
         <ul class="dropdown-menu">
-           <li>
+          <li>
             <a href="javascript:formSubmit()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
 
           </li>
@@ -77,16 +76,16 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav side-nav">
         <li class="active">
-          <a href="events"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+          <a href="${pageContext.request.contextPath}/events"><i class="glyphicon glyphicon-calendar"></i> Events</a>
         </li>
         <li>
-          <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+          <a href="${pageContext.request.contextPath}/myEvents"><i class="glyphicon glyphicon-map-marker"></i> My Events</a>
         </li>
         <li>
-          <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+          <a href="${pageContext.request.contextPath}/trips"><i class="glyphicon glyphicon-road"></i> Trips</a>
         </li>
         <li>
-          <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+          <a href="${pageContext.request.contextPath}/myTrips"><i class="glyphicon glyphicon-edit"></i> My Trips</a>
         </li>
       </ul>
     </div>
@@ -102,7 +101,7 @@
         <div class="col-lg-12">
           <ol class="breadcrumb">
             <li>
-              <i class="fa fa-dashboard"></i>  <a href="index">Events</a>
+              <a href="index"><i class="glyphicon glyphicon-calendar"></i> Events</a>
             </li>
           </ol>
         </div>
@@ -119,47 +118,47 @@
         </div>
       </div>
       <!-- /.row -->
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="table-responsive">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="table-responsive">
 
-        <table data-toggle="table" data-click-to-select="true">
-          <thead>
-          <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Creator</th>
-            <th>Trip</th>
-          </tr>
-          </thead>
+            <table data-toggle="table" data-click-to-select="true">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Creator</th>
+                <th>Trip</th>
+              </tr>
+              </thead>
 
-            <tbody data-link="row" class="rowlink">
-            <c:forEach items="${events}" var="event">
-            <tr>
-              <td><a href="<c:url value='/event/${event.eventId}' />">${event.title}</a></td>
-              <td><a href="<c:url value='/event/${event.eventId}' />">${event.eventDate}</a></td>
-              <td><a href="<c:url value='/event/${event.eventId}' />">${event.createdBy.username}</a></td>
-              <td><a href="<c:url value='/event/${event.trip.tripId}' />">${event.trip.title}</a></td>
+              <tbody data-link="row" class="rowlink">
+              <c:forEach items="${events}" var="event">
+                <tr>
+                  <td><a href="<c:url value='/events/${event.eventId}' />">${event.title}</a></td>
+                  <td><a href="<c:url value='/events/${event.eventId}' />">${event.eventDate}</a></td>
+                  <td><a href="<c:url value='/events/${event.eventId}' />">${event.createdBy.username}</a></td>
+                  <td><a href="<c:url value='/events/${event.eventId}' />">${event.trip.title}</a></td>
 
-            </tr>
-            </c:forEach>
-            </tbody>
+                </tr>
+              </c:forEach>
+              </tbody>
 
-        </table>
+            </table>
           </div>
-        <div>
-          <tag:paginate limit="${limit}" offset="${offset}" count="${count}" uri="${pageContext.request.contextPath}/events"
-                        next="&raquo;" previous="&laquo;" search="${search}" />
+          <div>
+            <tag:paginate limit="${limit}" offset="${offset}" count="${count}" uri="${pageContext.request.contextPath}/events"
+                          next="&raquo;" previous="&laquo;" search="${search}" />
+          </div>
+
+
+
+
+
+
+
         </div>
-
-
-
-
-
-
-
       </div>
-    </div>
     </div>
     <!-- /.container-fluid -->
 
@@ -179,7 +178,30 @@
     document.getElementById("logoutForm").submit();
   }
 </script>
-
+<%--ERROR MODAL--%>
+<c:if test="${not empty error}">
+  <div class="modal fade in" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Error:</h4>
+        </div>
+        <div class="modal-body">
+          <p class="error">${error}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <script type="text/javascript">
+    $(window).load(function(){
+      $('#myModal').modal('show');
+    });
+  </script>
+</c:if>
 </body>
 
 </html>

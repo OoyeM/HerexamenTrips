@@ -76,21 +76,21 @@
             <ul class="nav navbar-nav side-nav">
                 <c:if test="${not empty pageContext.request.userPrincipal}">
                     <li>
-                        <a href="index"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                        <a href="${pageContext.request.contextPath}/index"><i class="glyphicon glyphicon-calendar"></i> Events</a>
                     </li>
                     <li>
-                        <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
-                    </li>
-                    <li class="active">
-                        <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+                        <a href="${pageContext.request.contextPath}/myEvents"><i class="glyphicon glyphicon-map-marker"></i> My Events</a>
                     </li>
                     <li>
-                        <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                        <a href="${pageContext.request.contextPath}/trips"><i class="glyphicon glyphicon-road"></i> Trips</a>
+                    </li>
+                    <li  class="active">
+                        <a href="${pageContext.request.contextPath}/myTrips"><i class="glyphicon glyphicon-edit"></i> My Trips</a>
                     </li>
                 </c:if>
                 <c:if test="${empty pageContext.request.userPrincipal}">
                     <li>
-                        <a href="${pageContext.request.contextPath}"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
+                        <a href="${pageContext.request.contextPath}"><i class="glyphicon glyphicon-road"></i> Trips</a>
                     </li>
                 </c:if>
             </ul>
@@ -107,15 +107,20 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
                         <li>
-                            <i class="glyphicon glyphicon-list-alt active"></i> <a
-                                href="${pageContext.request.contextPath}">Trips</a>
+                            <a href="${pageContext.request.contextPath}">
+                                <i class="glyphicon glyphicon-road"></i> Trips
+                            </a>
                         </li>
                         <li>
-                            <i class="glyphicon glyphicon-road active"></i><a
-                                href="${pageContext.request.contextPath}/trip/${tripId}">Trip: ${tripId}</a>
+                            <a href="${pageContext.request.contextPath}/trip/${tripId}">
+                                Trip: ${tripId}
+                            </a>
                         </li>
                         <li>
-                            <i class="glyphicon glyphicon-road active"></i>Triplocation: ${tripLocation.locationId}
+                            Triplocation: ${tripLocation.locationId}
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/editTrip/${tripId}"><button type="button" class="btn"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>  Back</button></a>
                         </li>
                     </ol>
                 </div>
@@ -123,26 +128,26 @@
 
 
             <!-- /.row -->
-            <form:form method="POST" modelAttribute="tripLocation">
+            <form:form method="POST" modelAttribute="tripLocation" action="${pageContext.request.contextPath}/createLocation/${tripId}/${tripLocation.locationId}">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Name</span>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
                         <form:input type="text" placeholder="Not found" path="name" id="name"
                                     class="form-control input-sm backgroundWhite"/>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Longitude</span>
+                    <div class="form-group">
+                        <label for="lng">Longitude:</label>
                         <form:input type="text" placeholder="Not found" path="lng" id="lng" readonly="true"
                                     class="form-control input-sm backgroundWhite"/>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Latitude</span>
+                    <div class="form-group">
+                        <label for="lat">Latitude:</label>
                         <form:input type="text" placeholder="Not found" path="lat" id="lat" readonly="true"
                                     class="form-control input-sm backgroundWhite"/>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Description</span>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
                         <form:textarea placeholder="Not found" path="description" id="description"
                                        rows="5" class="form-control backgroundWhite"/>
                     </div>
@@ -151,8 +156,8 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Question</span>
+                    <div class="form-group">
+                        <label for="question">Question:</label>
                         <form:textarea placeholder="Not found" path="question" id="question"
                                        rows="9" class="form-control backgroundWhite"/>
                     </div>
@@ -164,9 +169,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <input type="submit" value="Save" class="btn btn-primary" />
-                    <a href="<c:url value='/singleUpload/${tripLocationId}' />"><button type="button" class="btn btn-primary"> Add picture</button></a>
+                    <a href="<c:url value='/singleUpload/${tripId}/${tripLocationId}' />"><button type="button" class="btn btn-primary"> Add picture</button></a>
                 </div>
             </div>
+                <form:input type="hidden" path="orderNumber" id="orderNumber" />
+                <form:input type="hidden" path="category" id="category" />
             </form:form>
             </br>
             <div class="row">

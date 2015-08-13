@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by Matthias on 23/07/2015.
  */
 @Entity
-@Table(name = "Event")
+@Table(name = "Events")
 public class Event implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Event implements Serializable {
     private User createdBy;
     @Column(name="TITLE", length=50, nullable=true)
     private String title;
-    @Column(name="eventDate", columnDefinition="DATETIME default SYSDATE")
+    @Column(name="eventDate")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date eventDate;

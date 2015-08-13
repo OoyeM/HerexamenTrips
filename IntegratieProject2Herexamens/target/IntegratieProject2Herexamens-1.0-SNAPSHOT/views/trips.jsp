@@ -86,16 +86,16 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a href="events"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                    <a href="events"><i class="glyphicon glyphicon-calendar"></i> Events</a>
                 </li>
                 <li>
-                    <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                    <a href="myEvents"><i class="glyphicon glyphicon-map-marker"></i> My Events</a>
                 </li>
                 <li class="active">
-                    <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+                    <a href="trips"><i class="glyphicon glyphicon-road"></i> Trips</a>
                 </li>
                 <li>
-                    <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                    <a href="myTrips"><i class="glyphicon glyphicon-edit"></i> My Trips</a>
                 </li>
             </ul>
             </li>
@@ -113,7 +113,7 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="index">Trips</a>
+                            <a href="${pageContext.request.contextPath}/index"> <i class="glyphicon glyphicon-road"></i> Trips</a>
                         </li>
                     </ol>
                 </div>

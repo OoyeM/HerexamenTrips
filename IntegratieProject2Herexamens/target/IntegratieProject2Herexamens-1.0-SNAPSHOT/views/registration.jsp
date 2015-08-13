@@ -17,8 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Trips app - Bootstrap Admin Template</title>
-  <title>Herexamen_trips</title>
+  <title>Trips app</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
@@ -62,7 +61,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index">Trips</a>
+      <a class="navbar-brand" href="index">Trips app</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -87,7 +86,10 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav side-nav">
         <li>
-          <a href="index"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
+          <a href="${pageContext.request.contextPath}/index"><i class="glyphicon glyphicon-road"></i> Trips</a>
+        </li>
+        <li>
+          <a href="${pageContext.request.contextPath}/trips"><button type="button" class="btn"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>  Back</button></a>
         </li>
       </ul>
       </li>
@@ -105,7 +107,7 @@
         <div class="col-lg-12">
           <ol class="breadcrumb">
             <li>
-              <i class="fa fa-dashboard"></i>  <a href="index">Registration</a>
+              <i class="glyphicon glyphicon-road"></i>  <a href="index">Registration</a>
             </li>
           </ol>
         </div>
@@ -119,7 +121,6 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h1 class="text-center">Registration</h1>
                 <c:if test="${not empty error}">
                   <div class="error">${error}</div>

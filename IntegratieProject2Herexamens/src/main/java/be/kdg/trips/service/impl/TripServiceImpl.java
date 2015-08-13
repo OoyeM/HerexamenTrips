@@ -21,11 +21,11 @@ public class TripServiceImpl implements TripService {
     @Autowired
     private TripDao tripDao;
 
-    public Trip findTripById(int id) {
+    public Trip findTripById(int id) throws Exception {
         return tripDao.findTripById(id);
     }
 
-    public void saveTrip(Trip trip) {
+    public void saveTrip(Trip trip) throws Exception {
         tripDao.saveTrip(trip);
     }
 
@@ -34,7 +34,7 @@ public class TripServiceImpl implements TripService {
      * Just fetch the entity from db and update it with proper values within transaction.
      * It will be updated in db once transaction ends.
      */
-    public void updateTrip(Trip trip) {
+    public void updateTrip(Trip trip) throws Exception {
         Trip entity = tripDao.findTripById(trip.getTripId());
         if (entity != null) {
             entity.setTitle(trip.getTitle());
@@ -44,22 +44,22 @@ public class TripServiceImpl implements TripService {
         }
     }
 
-    public void deleteTripById(int id) {
+    public void deleteTripById(int id) throws Exception {
         tripDao.deleteTripById(id);
     }
 
-    public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord) {
+    public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord) throws Exception {
         return tripDao.findAllTrips(offset,limit,keyWord);
     }
-    public Long count(Integer offset,Integer limit,String keyWord){
+    public Long count(Integer offset,Integer limit,String keyWord) throws Exception {
        return tripDao.count(offset,limit,keyWord);
     }
-    public Long count(Integer offset, Integer limit, String keyWord, Integer user_id){
+    public Long count(Integer offset, Integer limit, String keyWord, Integer user_id) throws Exception {
         return tripDao.count(offset,limit,keyWord,user_id);
     }
 
     @Override
-    public List<Trip> findAllTripsByUsername(Integer offset, Integer limit, String keyWord, Integer id) {
+    public List<Trip> findAllTripsByUsername(Integer offset, Integer limit, String keyWord, Integer id) throws Exception {
         return tripDao.findAllTripsByUsername( offset,  limit,  keyWord,  id);
     }
 

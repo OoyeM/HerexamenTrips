@@ -8,17 +8,17 @@ import java.util.List;
  * Created by Matthias on 9/08/2015.
  */
 public interface EventDao {
-    Event findEventById(int id);
+    Event findEventById(int id) throws Exception;
 
-    void saveEvent(Event event);
+    void saveEvent(Event event) throws Exception;
 
-    void deleteEventById(int id);
+    void deleteEventById(int id) throws Exception;
 
-    List<Event> findAllEvents(Integer offset, Integer limit, String keyWord, Integer user_id);
+    List<Event> findAllEvents(Integer offset, Integer limit, String keyWord, Integer user_id) throws Exception;
 
-    Long countInvited(Integer offset, Integer limit, String keyWord, Integer user_id);
+    Long countInvited(Integer offset, Integer limit, String keyWord, Integer user_id) throws Exception;
 
-    Long count(Integer offset, Integer limit, String keyWord, Integer user_id);
+    Long count(Integer offset, Integer limit, String keyWord, Integer user_id) throws Exception;
 
-    List<Event> findAllEventsByUsername(Integer offset, Integer limit, String keyWord, Integer id);
+    List<Event> findAllEventsByUsername(Integer offset, Integer limit, String keyWord, Integer id) throws Exception;
 }

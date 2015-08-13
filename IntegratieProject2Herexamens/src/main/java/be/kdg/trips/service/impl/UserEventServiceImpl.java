@@ -19,15 +19,33 @@ public class UserEventServiceImpl implements UserEventService {
     private UserEventDao userEventDao;
 
     @Override
-    public List<UserEvent> getAllUserEvents(int eventId) {
+    public List<UserEvent> getAllUserEvents(int eventId) throws Exception {
         return userEventDao.getAllUserEvents(eventId);
     }
 
     @Override
-    public void updateEvent(UserEvent userEvent) {
+    public void updateEvent(UserEvent userEvent) throws Exception {
         be.kdg.trips.model.UserEvent entity = userEventDao.findUserEventById(userEvent.getUsereventId());
         if (entity != null) {
             entity.setAccepted(userEvent.isAccepted());
         }
     }
+
+    @Override
+    public void saveUserEventService(UserEvent userEvent) throws Exception {
+        userEventDao.saveUserEvent(userEvent);
+
+    }
+
+    @Override
+    public void removeUserEvent(Integer userId, int eventId) throws Exception {
+        userEventDao.deleteUserEventByUIdEId(userId,eventId);
+    }
+
+    @Override
+    public UserEvent getUserEventByEIdUId(Integer user_id, int eventId) throws Exception {
+        return userEventDao.findUserEventByUIdEId(user_id,eventId);
+    }
+
+
 }

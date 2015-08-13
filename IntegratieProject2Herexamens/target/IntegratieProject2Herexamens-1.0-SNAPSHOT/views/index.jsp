@@ -65,14 +65,14 @@
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
       <li class="dropdown">
-        <a href="${pageContext.request.contextPath}/  login" class="dropdown-toggle"><i class="fa fa-user"></i> Login <b class="caret"></b></a>
+        <a href="${pageContext.request.contextPath}/login" class="dropdown-toggle"><i class="fa fa-user"></i> Login <b class="caret"></b></a>
       </li>
     </ul>
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav side-nav">
         <li class="active">
-          <a href="index"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
+          <a href="index"><i class="glyphicon glyphicon-road"></i> Trips</a>
         </li>
       </ul>
       </li>
@@ -90,7 +90,7 @@
         <div class="col-lg-12">
           <ol class="breadcrumb">
             <li>
-              <i class="fa fa-dashboard"></i>  <a href="index">Trips</a>
+              <a href="index"><i class="glyphicon glyphicon-road"></i> Trips</a>
             </li>
           </ol>
         </div>

@@ -76,21 +76,21 @@
             <ul class="nav navbar-nav side-nav">
                 <c:if test="${not empty pageContext.request.userPrincipal}">
                     <li>
-                        <a href="index"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                        <a href="${pageContext.request.contextPath}/index"><i class="glyphicon glyphicon-calendar"></i> Events</a>
                     </li>
                     <li>
-                        <a href="myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                        <a href="${pageContext.request.contextPath}/myEvents"><i class="glyphicon glyphicon-map-marker"></i> My Events</a>
                     </li>
                     <li class="active">
-                        <a href="trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
+                        <a href="${pageContext.request.contextPath}/trips"><i class="glyphicon glyphicon-road"></i> Trips</a>
                     </li>
                     <li>
-                        <a href="myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                        <a href="${pageContext.request.contextPath}/myTrips"><i class="glyphicon glyphicon-edit"></i> My Trips</a>
                     </li>
                 </c:if>
                 <c:if test="${empty pageContext.request.userPrincipal}">
                     <li>
-                        <a href="${pageContext.request.contextPath}"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
+                        <a href="${pageContext.request.contextPath}"><i class="glyphicon glyphicon-road"></i> Trips</a>
                     </li>
                 </c:if>
             </ul>
@@ -107,15 +107,14 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
                         <li>
-                            <i class="glyphicon glyphicon-list-alt active"></i> <a
+                            <i class="glyphicon glyphicon-road"></i> <a
                                 href="${pageContext.request.contextPath}">Trips</a>
                         </li>
                         <li>
-                            <i class="glyphicon glyphicon-road active"></i><a
-                                href="${pageContext.request.contextPath}/trip/${tripId}">Trip: ${tripId}</a>
+                            <a href="${pageContext.request.contextPath}/trip/${tripId}">Trip: ${tripId}</a>
                         </li>
                         <li>
-                            <i class="glyphicon glyphicon-road active"></i>Triplocation: ${tripLocation.locationId}
+                            Triplocation: ${tripLocation.locationId}
                         </li>
                     </ol>
                 </div>
@@ -126,23 +125,23 @@
             <form:form method="POST" modelAttribute="tripLocation">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Name</span>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
                         <form:input type="text" placeholder="Not found" path="name" id="name" readonly="true"
                                     class="form-control input-sm backgroundWhite"/>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Longitude</span>
+                    <div class="form-group">
+                        <label for="lng">Longitude:</label>
                         <form:input type="text" placeholder="Not found" path="lng" id="lng" readonly="true"
                                     class="form-control input-sm backgroundWhite"/>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Latitude</span>
+                    <div class="form-group">
+                        <label for="lat">Latitude:</label>
                         <form:input type="text" placeholder="Not found" path="lat" id="lat" readonly="true"
                                     class="form-control input-sm backgroundWhite"/>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Description</span>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
                         <form:textarea placeholder="Not found" path="description" readonly="true" id="description"
                                        rows="5" class="form-control backgroundWhite"/>
                     </div>
@@ -151,8 +150,8 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="input-group">
-                        <span class="input-group-addon equalWidth" id="basic-addon1">Question</span>
+                    <div class="form-group">
+                        <label for="question">Question:</label>
                         <form:textarea placeholder="Not found" path="question" readonly="true" id="question"
                                        rows="9" class="form-control backgroundWhite"/>
                     </div>

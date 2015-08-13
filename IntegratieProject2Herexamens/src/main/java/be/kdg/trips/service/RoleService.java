@@ -6,5 +6,5 @@ import be.kdg.trips.model.User;
  * Created by Matthias on 5/08/2015.
  */
 public interface RoleService {
-    void createRole(User user);
+    void createRole(User user) throws Exception;
 }

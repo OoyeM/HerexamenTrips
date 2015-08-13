@@ -3,12 +3,15 @@ package be.kdg.trips.util;
 /**
  * Created by Matthias on 5/08/2015.
  */
+import org.apache.log4j.Logger;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.Writer;
 
 public class PaginationTaglib extends SimpleTagSupport {
+    private static final Logger logger = Logger.getLogger(PaginationTaglib.class);
     private String uri;
     private int offset;
     private int count;
@@ -19,8 +22,12 @@ public class PaginationTaglib extends SimpleTagSupport {
     private String search ="";
 
     private Writer getWriter() {
+        try{
         JspWriter out = getJspContext().getOut();
-        return out;
+        return out;}catch (Exception ex){
+            logger.error("error in paginator",ex);
+            return null;
+        }
     }
 
     @Override
@@ -52,6 +59,7 @@ public class PaginationTaglib extends SimpleTagSupport {
             out.write("</ul>");
             out.write("</nav>");
         } catch (java.io.IOException ex) {
+            logger.error("error in paginator",ex);
             throw new JspException("Error in Paginator tag", ex);
         }
     }

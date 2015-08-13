@@ -17,19 +17,19 @@ import java.util.List;
 public class TripLabelDaoImpl extends AbstractDao<Integer,TripLabel> implements TripLabelDao {
 
     @Override
-    public void saveTripLocation(TripLabel tripLabel) {
+    public void saveTripLocation(TripLabel tripLabel)throws Exception {
             persist(tripLabel);
     }
 
     @Override
-    public List<TripLabel> findAllLabelsById(int tripId) {
+    public List<TripLabel> findAllLabelsById(int tripId)throws Exception {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("trip.tripId", tripId));
         return criteria.list();
     }
 
     @Override
-    public void deleteLabel(int labelId) {
+    public void deleteLabel(int labelId)throws Exception {
         Query deleteTripLabel = getSession().createSQLQuery("delete from Trip_label where TRIPLABEL_ID = :labelId");
         deleteTripLabel.setInteger("labelId", labelId);
         deleteTripLabel.executeUpdate();

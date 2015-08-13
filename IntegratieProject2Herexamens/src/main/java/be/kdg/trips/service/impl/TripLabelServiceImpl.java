@@ -19,17 +19,17 @@ public class TripLabelServiceImpl implements TripLabelService {
     @Autowired
     TripLabelDao tripLabelDao;
     @Override
-    public void saveTrip(TripLabel tripLabel) {
+    public void saveTrip(TripLabel tripLabel) throws Exception {
         tripLabelDao.saveTripLocation(tripLabel);
     }
 
     @Override
-    public List<TripLabel> findAllTripLabels(Integer tripId) {
+    public List<TripLabel> findAllTripLabels(Integer tripId) throws Exception {
         return tripLabelDao.findAllLabelsById(tripId);
     }
 
     @Override
-    public void deleteLabel(int labelId) {
+    public void deleteLabel(int labelId) throws Exception {
         tripLabelDao.deleteLabel(labelId);
     }
 

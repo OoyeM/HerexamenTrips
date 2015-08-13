@@ -2,6 +2,7 @@ package be.kdg.trips.controllers;
 
 import be.kdg.trips.model.*;
 import be.kdg.trips.service.*;
+import be.kdg.trips.util.LocationCategories;
 import be.kdg.trips.util.TripLocationSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -45,12 +46,14 @@ public class TripsController {
     @Autowired
     EventService eventService;
 
+
+
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = {"/trips"}, method = RequestMethod.GET)
     public ModelAndView tripsList(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,
                                   @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
                                   @RequestParam(value = "search", required = false, defaultValue = "") String keyWord
-            , ModelMap model, HttpServletRequest request) {
+            , ModelMap model, HttpServletRequest request) throws Exception {
         String error = (String) request.getSession().getAttribute("error");
         model.addAttribute("error", error);
         request.getSession().removeAttribute("error");
@@ -60,16 +63,16 @@ public class TripsController {
         model.addAttribute("offset", offset);
         model.addAttribute("keyWord", keyWord);
         model.addAttribute("limit", limit);
-
         return new ModelAndView("trips");
     }
+
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = {"/myTrips"}, method = RequestMethod.GET)
     public ModelAndView myTripsList(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,
                                     @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
                                     @RequestParam(value = "search", required = false, defaultValue = "") String keyWord
-            , ModelMap model) {
+            , ModelMap model) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetail = (UserDetails) auth.getPrincipal();
         User user = userService.getUser(userDetail.getUsername());
@@ -85,7 +88,7 @@ public class TripsController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = {"/new"}, method = RequestMethod.GET)
-    public ModelAndView newTrip(ModelMap model) {
+    public ModelAndView newTrip(ModelMap model) throws Exception {
         Trip trip = new Trip();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetail = (UserDetails) auth.getPrincipal();
@@ -99,7 +102,7 @@ public class TripsController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = {"/editTrip/{tripId}"}, method = RequestMethod.GET)
-    public ModelAndView editTrip(@PathVariable int tripId, ModelMap model, HttpServletRequest request) {
+    public ModelAndView editTrip(@PathVariable int tripId, ModelMap model, HttpServletRequest request) throws Exception {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetail = (UserDetails) auth.getPrincipal();
@@ -110,7 +113,19 @@ public class TripsController {
             model.clear();
             return new ModelAndView("redirect:/trips", model);
         }
+        String labels = "";
+        List<TripLabel> tripLabels = tripLabelService.findAllTripLabels(tripId);
+        if (tripLabels.size() != 0) {
+            for (TripLabel tl : tripLabels) {
+                labels += tl.getDescription() + ", ";
+            }
+            labels = labels.substring(0, labels.length() - 2);
+        } else {
+            labels = "No labels found";
+        }
         List<TripLocation> tripLocations = tripLocationService.findAllTripLocations(tripId);
+        Collections.sort(tripLocations, new TripLocationSort());
+        model.addAttribute("labels", labels);
         model.addAttribute("tripLocations", tripLocations);
         model.addAttribute("trip", trip);
         return new ModelAndView("tripEdit");
@@ -121,7 +136,7 @@ public class TripsController {
     public
     @ResponseBody
     ModelAndView updateTrip(@Valid Trip trip, BindingResult result,
-                            ModelMap model, @PathVariable int tripId) {
+                            ModelMap model, @PathVariable int tripId) throws Exception {
 
         if (result.hasErrors()) {
             return new ModelAndView("tripEdit");
@@ -134,7 +149,7 @@ public class TripsController {
     @RequestMapping(value = {"/editTrip/{tripId}/editLabels"}, method = RequestMethod.GET)
     public
     @ResponseBody
-    ModelAndView editLabels(ModelMap model, @PathVariable int tripId, HttpServletRequest request) {
+    ModelAndView editLabels(ModelMap model, @PathVariable int tripId, HttpServletRequest request) throws Exception {
 
         if (!correctUser(tripId)) {
             request.getSession().setAttribute("error", "Tripslabel can only be added by the trip owner.");
@@ -154,7 +169,7 @@ public class TripsController {
     @RequestMapping(value = {"/editTrip/{tripId}/editLabels"}, method = RequestMethod.POST)
     public
     @ResponseBody
-    ModelAndView saveLabel(@Valid TripLabel label, ModelMap model, @PathVariable int tripId, HttpServletRequest request) {
+    ModelAndView saveLabel(@Valid TripLabel label, ModelMap model, @PathVariable int tripId, HttpServletRequest request) throws Exception {
         if (!correctUser(tripId)) {
             request.getSession().setAttribute("error", "Tripslabel can only be added by the trip owner.");
             model.clear();
@@ -168,7 +183,7 @@ public class TripsController {
     @RequestMapping(value = {"/editTrip/{tripId}/deleteLabel/{labelId}"}, method = RequestMethod.GET)
     public
     @ResponseBody
-    ModelAndView deleteLabel(@Valid TripLabel label, ModelMap model, @PathVariable int tripId, @PathVariable int labelId, HttpServletRequest request) {
+    ModelAndView deleteLabel(@Valid TripLabel label, ModelMap model, @PathVariable int tripId, @PathVariable int labelId, HttpServletRequest request) throws Exception {
         if (!correctUser(tripId)) {
             request.getSession().setAttribute("error", "Tripslabel can only be deleted by the trip owner.");
             model.clear();
@@ -180,19 +195,37 @@ public class TripsController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = {"/editTrip/{tripId}/createLocation/{lng}/{lat}/"}, method = RequestMethod.GET)
-    public ModelAndView createLocation(@PathVariable int tripId, @PathVariable double lng, @PathVariable double lat, ModelMap model) {
+    public ModelAndView createLocation(@PathVariable int tripId, @PathVariable double lng, @PathVariable double lat, ModelMap model) throws Exception {
         TripLocation tripLocation = new TripLocation();
         tripLocation.setLat(lat);
         tripLocation.setLng(lng);
         Trip trip = tripService.findTripById(tripId);
+        List<TripLocation> currentLocations = tripLocationService.findAllTripLocations(tripId);
+        if(currentLocations.size()>1) {
+            TripLocation currentLast = currentLocations.get(currentLocations.size() - 1);
+            currentLast.setCategory(LocationCategories.BETWEEN.getCat());
+            tripLocationService.updateTripLocation(currentLast);
+        }
+        if(currentLocations.size()==1) {
+            TripLocation currentLast = currentLocations.get(currentLocations.size() - 1);
+            currentLast.setCategory(LocationCategories.START.getCat());
+            tripLocationService.updateTripLocation(currentLast);
+        }
         tripLocation.setTrip(trip);
+        if(currentLocations.size()==0) {
+            tripLocation.setCategory(LocationCategories.START.getCat());
+        }else {
+            tripLocation.setCategory(LocationCategories.STOP.getCat());
+        }
+        tripLocation.setOrderNumber(currentLocations.size()+1);
         tripLocationService.saveTripLocation(tripLocation);
         model.addAttribute("tripLocation", tripLocation);
-        return new ModelAndView("redirect:/createLocation/" + tripLocation.getLocationId());
+        model.addAttribute("tripId",tripId);
+        return new ModelAndView("redirect:/createLocation/"+tripId+"/" + tripLocation.getLocationId());
     }
 
     @RequestMapping(value = {"/{tripId}/locations/{tripLocationId}"}, method = RequestMethod.GET)
-    public ModelAndView LocationDetails(@PathVariable int tripId, @PathVariable int tripLocationId, ModelMap model) {
+    public ModelAndView LocationDetails(@PathVariable int tripId, @PathVariable int tripLocationId, ModelMap model) throws Exception {
         TripLocation tripLocation = tripLocationService.findTripLocationById(tripLocationId);
         model.addAttribute("tripLocation", tripLocation);
         model.addAttribute("tripId", tripId);
@@ -200,18 +233,20 @@ public class TripsController {
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value = {"/createLocation/{tripLocationId}"}, method = RequestMethod.GET)
-    public ModelAndView editLocation(@PathVariable int tripLocationId, ModelMap model) {
+    @RequestMapping(value = {"/createLocation/{tripId}/{tripLocationId}"}, method = RequestMethod.GET)
+    public ModelAndView editLocation(@PathVariable int tripLocationId,@PathVariable int tripId, ModelMap model) throws Exception {
         TripLocation tripLocation = tripLocationService.findTripLocationById(tripLocationId);
         model.addAttribute("tripLocation", tripLocation);
+        model.addAttribute("tripId",tripId);
         List<TripImage> images = tripImageService.getAllLocationImages(tripLocationId);
         model.addAttribute("images", images);
+
         return new ModelAndView("createLocation");
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value = {"/createLocation/{tripLocationId}"}, method = RequestMethod.POST)
-    public ModelAndView updateLocation(@Valid TripLocation tripLocation, BindingResult result, ModelMap model, @PathVariable int tripLocationId) {
+    @RequestMapping(value = {"/createLocation/{tripId}/{tripLocationId}"}, method = RequestMethod.POST)
+    public ModelAndView updateLocation(@Valid TripLocation tripLocation, BindingResult result, ModelMap model, @PathVariable int tripLocationId,@PathVariable int tripId) throws Exception {
         tripLocation.setLocationId(tripLocationId);
         tripLocationService.updateTripLocation(tripLocation);
         model.addAttribute(tripLocation);
@@ -220,13 +255,13 @@ public class TripsController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = {"/delete-{tripId}-trip"}, method = RequestMethod.GET)
-    public ModelAndView deleteTrip(@PathVariable int tripId) {
+    public ModelAndView deleteTrip(@PathVariable int tripId) throws Exception {
         tripService.deleteTripById(tripId);
         return new ModelAndView("redirect:/tripsList");
     }
 
     @RequestMapping(value = {"/trip/{tripId}"}, method = RequestMethod.GET)
-    public ModelAndView getTrip(@PathVariable int tripId, ModelMap model) {
+    public ModelAndView getTrip(@PathVariable int tripId, ModelMap model) throws Exception {
 
         Trip trip = tripService.findTripById(tripId);
         List<TripLocation> tripLocations = tripLocationService.findAllTripLocations(tripId);
@@ -252,7 +287,28 @@ public class TripsController {
         return new ModelAndView("tripDetails_NoUser");
 
     }
-    private boolean correctUser(Integer id) {
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @RequestMapping(value = {"/tripList/{locationId}/{command}"}, method = RequestMethod.GET)
+    public ModelAndView tripListDelete(ModelMap model, @PathVariable int locationId, @PathVariable int command,HttpServletRequest request) throws Exception {
+
+        TripLocation location = tripLocationService.findTripLocationById(locationId);
+        switch (command){
+            //up
+            case 1: tripLocationService.updateListPosition(location.getTrip().getTripId(),locationId,command);
+                break;
+            //down
+            case 2: tripLocationService.updateListPosition(location.getTrip().getTripId(),locationId,command);
+                break;
+            //delete
+            case 3: tripLocationService.deleteLocation(locationId,location.getTrip().getTripId());
+                break;
+        }
+
+        return new ModelAndView("redirect:/editTrip/"+location.getTrip().getTripId());
+    }
+
+
+    private boolean correctUser(Integer id) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetail = (UserDetails) auth.getPrincipal();
         Trip trip = tripService.findTripById(id);

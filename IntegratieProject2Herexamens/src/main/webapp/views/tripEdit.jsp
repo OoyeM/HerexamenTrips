@@ -28,28 +28,6 @@
         var markerList = [];
 
         function initialize() {
-            // NIET NODIG, KAN NIET EDITEN
-//            sortableList = Sortable.create(document.getElementById("locationList"), {
-//                animation:150,
-//                onUpdate: function (event) {
-//                    var testlist = [];
-//                    var htmlListOrder = document.getElementById("locationList");
-//                    $('#locationList li').each(function (index) {
-//                        testlist.push($(this).attr('id'));
-//                    });
-//                    $.each(locationList, function (outerIndex) {
-//                        var location = this;
-//                        var id = this.id;
-//                        $.each(testlist, function (innerIndex) {
-//                            if (id.toString() === this.toString()) {
-//                                locationList[outerIndex].order = innerIndex + 1;
-//                            }
-//                        });
-//
-//                    }); //alert(JSON.stringify(locationList));
-//
-//                }
-//            });
 
             var mapProp = {
                 center: new google.maps.LatLng(51.508742, -0.120850),
@@ -85,20 +63,11 @@
             <c:forEach items="${tripLocations}" var="tripLocation">
             addInitLatLng(${tripLocation.lng}, ${tripLocation.lat}, ${tripLocation.locationId}, ${tripLocation.orderNumber}, "${tripLocation.name}");
             </c:forEach>
-            if (locationList.length === 0) {
-                $('#defaultEmptyLi').remove();
-                var li = document.createElement("li");
-                li.setAttribute("id", "defaultEmptyLi");
-                li.appendChild(document.createTextNode("Nothing found"));
-                document.getElementById("locationList").appendChild(li);
-            } else {
-                $('#defaultEmptyLi').remove();
-            }
             google.maps.event.addListener(map, 'click', addLocation);
 
         }
         function addLocation(event) {
-            window.location = "../editTrip/${tripId}/createLocation/"+event.latLng.lng()+"/"+event.latLng.lat()+"/";
+            window.location = "../editTrip/${tripId}/createLocation/" + event.latLng.lng() + "/" + event.latLng.lat() + "/";
 
         }
 
@@ -107,24 +76,23 @@
             var path = poly.getPath();
             var latLngVar = new google.maps.LatLng(lat, long, false);
             path.push(latLngVar);
+
             var marker = new google.maps.Marker(
                     {
                         position: latLngVar,
                         title: '#' + path.getLength(),
                         map: map
                     });
+            if(orderN==1){
+                var infoWindow = new google.maps.InfoWindow({map: map});
+                infoWindow.setPosition(latLngVar);
+                infoWindow.setContent('Start.');
+            }
             google.maps.event.addListener(marker, 'click', function () {
-                window.location.href = "../${tripId}/locations/" + id;
+                window.location.href = "../createLocation/${trip.tripId}/" + id;
             });
             markerList.push(marker);
-            var li = document.createElement("li");
-            li.setAttribute("id", path.getLength());
-            var a = document.createElement("a");
-            a.setAttribute("href", "${pageContext.request.contextPath}/createLocation/"+id);
-            a.appendChild(document.createTextNode("#" + orderN + ": " + name));
-            li.appendChild(a);
 
-            document.getElementById("locationList").appendChild(li);
             var listObject = {
                 id: path.getLength(),
                 order: path.getLength(),
@@ -134,7 +102,6 @@
                 desc: ""
             };
             locationList.push(listObject);
-            // alert(JSON  .stringify(locationList));
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -143,6 +110,11 @@
     <!-- Custom CSS -->
     <link href="<c:url value="/resources/css/sb-admin.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/customCss.css"/>" rel="stylesheet">
+    <!--bootstrap table-->
+    <link href="<c:url value="/resources/css/bootstrap-table.css"/>" rel="stylesheet">
+    <script src="<c:url value="/resources/js/bootstrap-table.js"/>"></script>
+    <link href="<c:url value="/resources/css/jasny-bootstrap.css"/>" rel="stylesheet">
+    <script src="<c:url value="/resources/js/jasny-bootstrap.js"/>"></script>
 
 </head>
 
@@ -178,7 +150,8 @@
             </c:if>
             <c:if test="${empty pageContext.request.userPrincipal}">
                 <li class="dropdown">
-                    <a href="${pageContext.request.contextPath}/login" class="dropdown-toggle"><i class="fa fa-user"></i> Login <b class="caret"></b></a>
+                    <a href="${pageContext.request.contextPath}/login" class="dropdown-toggle"><i
+                            class="fa fa-user"></i> Login <b class="caret"></b></a>
                 </li>
             </c:if>
         </ul>
@@ -187,21 +160,25 @@
             <ul class="nav navbar-nav side-nav">
                 <c:if test="${not empty pageContext.request.userPrincipal}">
                     <li>
-                        <a href="${pageContext.request.contextPath}/index"><i class="fa fa-fw fa-dashboard"></i>Events</a>
+                        <a href="${pageContext.request.contextPath}/index"><i class="glyphicon glyphicon-calendar"></i>
+                            Events</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/myEvents"><i class="fa fa-fw fa-dashboard"></i>My Events</a>
+                        <a href="${pageContext.request.contextPath}/myEvents"><i
+                                class="glyphicon glyphicon-map-marker"></i> My Events</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/trips"><i class="glyphicon glyphicon-road"></i>
+                            Trips</a>
                     </li>
                     <li class="active">
-                        <a href="${pageContext.request.contextPath}/trips"><i class="fa fa-fw fa-dashboard"></i>Trips</a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/myTrips"><i class="fa fa-fw fa-dashboard"></i>My Trips</a>
+                        <a href="${pageContext.request.contextPath}/myTrips"><i class="glyphicon glyphicon-edit"></i> My
+                            Trips</a>
                     </li>
                 </c:if>
                 <c:if test="${empty pageContext.request.userPrincipal}">
                     <li>
-                        <a href="${pageContext.request.contextPath}"><i class="fa fa-fw fa-dashboard"></i> Trips</a>
+                        <a href="${pageContext.request.contextPath}"><i class="glyphicon glyphicon-road"></i> Trips</a>
                     </li>
                 </c:if>
             </ul>
@@ -218,53 +195,62 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
                         <li>
-                            <i class="glyphicon glyphicon-list-alt active"></i> <a
+                            <i class="glyphicon glyphicon-road"></i> <a
                                 href="${pageContext.request.contextPath}">Trips</a>
                         </li>
                         <li>
-                            <i class="glyphicon glyphicon-road active"></i>Trip: ${tripId}
+                            Trip: ${tripId}
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/myTrips">
+                                <button type="button" class="btn"><span class="glyphicon glyphicon-fast-backward"
+                                                                        aria-hidden="true"></span> Back
+                                </button>
+                            </a>
                         </li>
                     </ol>
                 </div>
             </div>
             <!-- /.row -->
-            <row>
-                <div class="col-lg-12">
-                    <a href="javascript:tripInfoSubmit()"><button type="button" class="btn btn-primary">Save</button></a>
-                </div>
-                </br>
-            </row>
+
             <div class="row">
                 <div class="col-lg-8">
 
 
                     <form:form method="POST" modelAttribute="trip" id="tripInfo">
-                        <div class="input-group">
-                            <span class="input-group-addon equalWidth" id="basic-addon1">   Name   </span>
+                        <div class="form-group">
+                            <label for="title">Name:</label>
                             <form:input type="text" placeholder="Not found" path="title" id="title"
                                         class="form-control input-sm backgroundWhite"/>
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-addon  equalWidth"
-                                  id="basic-addon1">Description</span><form:textarea maxlength="500" path="description"
-                                                                                     id="description" rows="6"
-                                                                                     class="form-control backgroundWhite"/>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <form:textarea maxlength="500" path="description" id="description" rows="6"
+                                           class="form-control backgroundWhite"/>
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-addon  equalWidth" id="basic-addon1">Created By</span>
+                        <div class="form-group">
+                            <label for="createdBy.username">Created by:</label>
                             <form:input type="text" placeholder="Not found" path="createdBy.username"
                                         id="createdBy.username" readonly="true"
                                         class="form-control input-sm backgroundWhite"/>
+                        </div>
+                        <div class="form-group">
+                            <a href="javascript:tripInfoSubmit()">
+                                <button type="button" class="btn btn-primary">Save</button>
+                            </a>
                         </div>
                     </form:form>
                 </div>
                 <div class="col-lg-4">
                     <form:form modelAttribute="labels">
-                        <div class="input-group">
-                            <span class="input-group-addon readonly equalWidth">Labels</span>
-                            <textarea id="labels" rows="7" class="form-control backgroundWhite">${labels}</textarea>
+                        <div class="form-group">
+                            <label for="labels">Labels:</label>
+                            <textarea id="labels" rows="7" class="form-control backgroundWhite"
+                                      readonly="true">${labels}</textarea>
                         </div>
-                        <a href="${pageContext.request.contextPath}/editTrip/${tripId}/editLabels"><button type="button" class="btn btn-primary customLabelBtnMargin">Add Label</button></a>
+                        <a href="${pageContext.request.contextPath}/editTrip/${tripId}/editLabels">
+                            <button type="button" class="btn btn-primary customLabelBtnMargin">Add Label</button>
+                        </a>
                     </form:form>
                 </div>
             </div>
@@ -281,15 +267,37 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Trip locations list</h3>
-                        </div>
-                        <div id="listContainer maxHeight">
-                            <ul id="locationList">
-                                <li id="defaultEmptyLi">Nothing found</li>
-                            </ul>
-                        </div>
+                    <div class="table-responsive">
+
+                        <table data-toggle="table" data-click-to-select="true">
+                            <thead>
+                            <tr>
+                                <th>Trip locations</th>
+                            </tr>
+                            </thead>
+                            <tbody data-link="row" class="rowlink">
+                            <c:forEach items="${tripLocations}" var="triplocation">
+                                <tr>
+                                    <td>
+                                        <a href="<c:url value='/createLocation/${trip.tripId}/${triplocation.locationId}"' />">${triplocation.name}</a>
+                                        <a href="<c:url value='/tripList/${triplocation.locationId}/3' />">
+                                        <span class="glyphicon glyphicon-trash glyphColorDelete editGlyphSize floatRight"
+                                              aria-hidden="true"></span>
+                                        </a>
+                                        <a href="<c:url value='/tripList/${triplocation.locationId}/2' />">
+                                        <span class="glyphicon glyphicon-arrow-down glyphColorBlue editGlyphSize floatRight"
+                                              aria-hidden="true"></span>
+                                        </a>
+                                        <a href="<c:url value='/tripList/${triplocation.locationId}/1' />">
+                                        <span class="glyphicon glyphicon-arrow-up glyphColorBlue editGlyphSize floatRight"
+                                              aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+
+                        </table>
                     </div>
                 </div>
             </div>

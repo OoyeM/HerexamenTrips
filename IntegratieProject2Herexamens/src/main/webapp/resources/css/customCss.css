@@ -10,6 +10,12 @@
  * Row with equal height columns
  * --------------------------------------------------
  */
+.navbar-form.nopad{
+    padding: 0px;
+}
+.nopadLeft{
+    padding-left: 0px;
+}
 .row-eq-height {
     display: -webkit-box;
     display: -webkit-flex;
@@ -28,9 +34,19 @@
 .glyphColorDelete {
     color:#ff0000;
 }
+.glyphColorBlue {
+    color:#0044cc;
+}
  .glyphColorEdit {
      color:greenyellow;
  }
+ .editGlyphSize{
+     font-size: 1.25em;
+     margin-left: 5px;
+ }
+.error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
 
 input[readonly].backgroundWhite {
     background-color: #fff;
