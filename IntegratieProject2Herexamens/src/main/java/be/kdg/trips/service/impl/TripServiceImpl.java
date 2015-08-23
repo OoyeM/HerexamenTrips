@@ -40,7 +40,6 @@ public class TripServiceImpl implements TripService {
             entity.setTitle(trip.getTitle());
             entity.setDescription(trip.getDescription());
             entity.setTripLabels(trip.getTripLabels());
-//            entity.setEvents(trip.getEvents());
         }
     }
 

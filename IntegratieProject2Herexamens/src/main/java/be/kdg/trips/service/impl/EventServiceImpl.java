@@ -23,6 +23,7 @@ public class EventServiceImpl implements EventService {
     private EventDao eventDao;
 
     public Event findEventById(int id) throws Exception {
+
         return eventDao.findEventById(id);
     }
 
@@ -52,19 +53,19 @@ public class EventServiceImpl implements EventService {
     }
 
     public List<Event> findAllEvents(Integer offset,Integer limit,String keyWord, Integer user_id) throws Exception {
-        return eventDao.findAllEvents(offset, limit, keyWord,user_id);
+        return eventDao.findAllEventsInvitedFor(offset, limit, keyWord, user_id);
     }
     public Long countInvitedEvents(Integer offset,Integer limit,String keyWord, Integer user_id) throws Exception {
-        return eventDao.countInvited(offset, limit, keyWord,user_id);
+        return eventDao.countInvitedForEvent(offset, limit, keyWord, user_id);
     }
 
     @Override
     public List<Event> findAllEventsByUsername(Integer offset, Integer limit, String keyWord, Integer id) throws Exception {
-        return eventDao.findAllEventsByUsername(offset, limit, keyWord, id);
+        return eventDao.findAllEventsCreatedByUserId(offset, limit, keyWord, id);
     }
 
     public Long count(Integer offset, Integer limit, String keyWord, Integer user_id) throws Exception {
-        return eventDao.count(offset,limit,keyWord,user_id);
+        return eventDao.countMyCreatedEvents(offset, limit, keyWord, user_id);
     }
 
 

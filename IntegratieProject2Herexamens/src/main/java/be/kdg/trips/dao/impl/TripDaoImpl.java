@@ -79,7 +79,7 @@ public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
 //        Query deleteUserEventLocation = getSession().createSQLQuery("delete from user_events where event_id IN(SELECT event_id from event where TRIP_ID = :tripId)");
 //        deleteUserEventLocation.setInteger("tripId", tripId);
 //        deleteUserEventLocation.executeUpdate();
-        Query deleteEventLocation = getSession().createSQLQuery("delete from Event where TRIP_ID = :tripId");
+        Query deleteEventLocation = getSession().createSQLQuery("delete from Events where TRIP_ID = :tripId");
         deleteEventLocation.setInteger("tripId", tripId);
         deleteEventLocation.executeUpdate();
         Query deleteTrip = getSession().createSQLQuery("delete from trip where TRIP_ID = :tripId");
@@ -87,7 +87,6 @@ public class TripDaoImpl extends AbstractDao<Integer,Trip> implements TripDao {
         deleteTrip.executeUpdate();
     }
 
-    @SuppressWarnings("unchecked")
     public List<Trip> findAllTrips(Integer offset,Integer limit,String keyWord)throws Exception {
         keyWord = keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();

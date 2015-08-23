@@ -40,8 +40,6 @@ public class TripLocationServiceImpl implements be.kdg.trips.service.TripLocatio
             entity.setDescription(tripLocation.getDescription());
             entity.setName(tripLocation.getName());
             entity.setQuestion(tripLocation.getQuestion());
-            entity.setOrderNumber(tripLocation.getOrderNumber());
-            entity.setCategory(tripLocation.getCategory());
         }
 
     }

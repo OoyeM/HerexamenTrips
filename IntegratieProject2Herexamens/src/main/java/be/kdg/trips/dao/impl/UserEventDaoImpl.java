@@ -30,7 +30,7 @@ public class UserEventDaoImpl extends AbstractDao<Integer,UserEvent> implements 
 
     @Override
     public void deleteUserEventById(int userEventId)throws Exception {
-        Query deleteUserEvent = getSession().createSQLQuery("delete from user_events where TRIP_ID = :userEventId");
+        Query deleteUserEvent = getSession().createSQLQuery("delete from user_events where userevent_id = :userEventId");
         deleteUserEvent.setInteger("userEventId", userEventId);
         deleteUserEvent.executeUpdate();
     }

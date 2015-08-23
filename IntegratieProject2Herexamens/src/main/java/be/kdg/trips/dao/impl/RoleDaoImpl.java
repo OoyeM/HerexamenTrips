@@ -4,6 +4,8 @@ import be.kdg.trips.dao.AbstractDao;
 import be.kdg.trips.dao.RoleDao;
 import be.kdg.trips.model.User;
 import be.kdg.trips.model.UserRole;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,5 +19,13 @@ public class RoleDaoImpl extends AbstractDao<Integer,UserRole> implements RoleDa
         userRole.setUser(user);
         userRole.setRole("ROLE_USER");
         persist(userRole);
+    }
+
+    @Override
+    public UserRole getRole(Integer userId) {
+        Criteria criteria = createEntityCriteria();
+        criteria.add(Restrictions.eq("user.user_id", userId));
+        return (UserRole) criteria.list().get(0);
+
     }
 }

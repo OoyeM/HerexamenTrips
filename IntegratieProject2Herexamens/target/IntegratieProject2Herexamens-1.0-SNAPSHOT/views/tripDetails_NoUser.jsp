@@ -199,7 +199,7 @@
                             Trip: ${tripId}
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/trips">
+                            <a href="${pageContext.request.contextPath}">
                                 <button type="button" class="btn"><span class="glyphicon glyphicon-fast-backward"
                                                                         aria-hidden="true"></span> Back
                                 </button>

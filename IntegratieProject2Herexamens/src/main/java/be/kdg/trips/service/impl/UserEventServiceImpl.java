@@ -24,7 +24,7 @@ public class UserEventServiceImpl implements UserEventService {
     }
 
     @Override
-    public void updateEvent(UserEvent userEvent) throws Exception {
+    public void updateUserEvent(UserEvent userEvent) throws Exception {
         be.kdg.trips.model.UserEvent entity = userEventDao.findUserEventById(userEvent.getUsereventId());
         if (entity != null) {
             entity.setAccepted(userEvent.isAccepted());
@@ -32,7 +32,7 @@ public class UserEventServiceImpl implements UserEventService {
     }
 
     @Override
-    public void saveUserEventService(UserEvent userEvent) throws Exception {
+    public void saveUserEvent(UserEvent userEvent) throws Exception {
         userEventDao.saveUserEvent(userEvent);
 
     }

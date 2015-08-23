@@ -165,6 +165,9 @@ public class EventController {
         model.addAttribute("offset", offset);
         model.addAttribute("keyWord", keyWord);
         model.addAttribute("limit", limit);
+        String error = (String) request.getSession().getAttribute("error");
+        model.addAttribute("error", error);
+        request.getSession().removeAttribute("error");
         return new ModelAndView("myEvents");
     }
 
@@ -179,7 +182,7 @@ public class EventController {
         userEvent.setAccepted(true);
         userEvent.setEventId(event.getEventId());
         userEvent.setUserId(user.getUser_id());
-        userEventService.saveUserEventService(userEvent);
+        userEventService.saveUserEvent(userEvent);
         return new ModelAndView("redirect:/myEvents/create/" + event.getEventId(), model);
 
     }//CANCEL MAKEN?
@@ -310,7 +313,7 @@ public class EventController {
                     User addedUser = userService.getUser(username);
                     userEvent.setUserId(addedUser.getUser_id());
 
-                    userEventService.saveUserEventService(userEvent);
+                    userEventService.saveUserEvent(userEvent);
                     //REAL APP CHANGE THIS FIRST PARAMETER INTO @username
                     emailHelperService.sendEmail("matthias.ooye@outlook.com", "Invitation for event on: "+event.getEventDate(),
                             "Go to the following link to accept/reject:    \n" +
@@ -370,7 +373,7 @@ public class EventController {
                 if(getUser().getUsername().equals(username)){
                    UserEvent userEvent= userEventService.getUserEventByEIdUId(u.getUser_id(),eventId);
                     userEvent.setAccepted(accepted);
-                   userEventService.updateEvent(userEvent);
+                   userEventService.updateUserEvent(userEvent);
                     if(getUser().getUsername().equals(event.getCreatedBy().getUsername())){
                         return new ModelAndView("redirect:/myEvents/");
                     }else return new ModelAndView("redirect:/events/"+eventId);

@@ -17,7 +17,7 @@ import java.util.List;
 public class TripLabelDaoImpl extends AbstractDao<Integer,TripLabel> implements TripLabelDao {
 
     @Override
-    public void saveTripLocation(TripLabel tripLabel)throws Exception {
+    public void saveTripLabel(TripLabel tripLabel)throws Exception {
             persist(tripLabel);
     }
 

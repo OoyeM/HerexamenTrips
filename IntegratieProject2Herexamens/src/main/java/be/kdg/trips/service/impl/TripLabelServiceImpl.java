@@ -20,7 +20,7 @@ public class TripLabelServiceImpl implements TripLabelService {
     TripLabelDao tripLabelDao;
     @Override
     public void saveTrip(TripLabel tripLabel) throws Exception {
-        tripLabelDao.saveTripLocation(tripLabel);
+        tripLabelDao.saveTripLabel(tripLabel);
     }
 
     @Override

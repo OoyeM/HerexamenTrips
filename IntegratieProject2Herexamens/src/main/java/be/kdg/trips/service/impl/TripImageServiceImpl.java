@@ -34,7 +34,6 @@ public class TripImageServiceImpl implements TripImageService {
         if (entity != null) {
             entity.setImgUrl(tripImage.getImgUrl());
             entity.setDescription(tripImage.getDescription());
-            entity.setTripLocation(tripImage.getTripLocation());
             entity.setThumbUrl(tripImage.getThumbUrl());
         }
     }

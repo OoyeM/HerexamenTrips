@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface UserEventService {
     List<UserEvent> getAllUserEvents(int eventId) throws Exception;
-    void updateEvent(UserEvent Event) throws Exception;
+    void updateUserEvent(UserEvent Event) throws Exception;
 
-    void saveUserEventService(UserEvent userEvent) throws Exception;
+    void saveUserEvent(UserEvent userEvent) throws Exception;
 
 
     void removeUserEvent(Integer userId, int eventId) throws Exception;

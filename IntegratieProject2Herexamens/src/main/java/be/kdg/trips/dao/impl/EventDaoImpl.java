@@ -31,13 +31,13 @@ public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDa
         Query deleteUserEvents = getSession().createSQLQuery("delete from user_events where event_id = :eventId");
         deleteUserEvents.setInteger("eventId", id);
         deleteUserEvents.executeUpdate();
-        Query deleteEvent = getSession().createSQLQuery("delete from event where event_id = :eventId");
+        Query deleteEvent = getSession().createSQLQuery("delete from events where event_id = :eventId");
         deleteEvent.setInteger("eventId", id);
         deleteEvent.executeUpdate();
     }
 
     @Override
-    public List<Event> findAllEvents(Integer offset, Integer limit, String keyWord, Integer user_id)throws Exception {
+    public List<Event> findAllEventsInvitedFor(Integer offset, Integer limit, String keyWord, Integer user_id)throws Exception {
         keyWord=keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();
         if(keyWord.isEmpty()){
@@ -63,7 +63,7 @@ public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDa
     }
 
     @Override
-    public Long countInvited(Integer offset, Integer limit, String keyWord,Integer user_id)throws Exception {
+    public Long countInvitedForEvent(Integer offset, Integer limit, String keyWord, Integer user_id)throws Exception {
         Criteria criteria = createEntityCriteria();
         keyWord=keyWord.toLowerCase();
         if(keyWord.isEmpty()){
@@ -81,7 +81,7 @@ public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDa
     }
 
     @Override
-    public Long count(Integer offset, Integer limit, String keyWord, Integer user_id)throws Exception {
+    public Long countMyCreatedEvents(Integer offset, Integer limit, String keyWord, Integer user_id)throws Exception {
         Criteria criteria = createEntityCriteria();
         keyWord=keyWord.toLowerCase();
         if(keyWord.isEmpty()){
@@ -95,7 +95,7 @@ public class EventDaoImpl extends AbstractDao<Integer, Event> implements EventDa
     }
 
     @Override
-    public List<Event> findAllEventsByUsername(Integer offset, Integer limit, String keyWord, Integer id)throws Exception {
+    public List<Event> findAllEventsCreatedByUserId(Integer offset, Integer limit, String keyWord, Integer id)throws Exception {
         keyWord = keyWord.toLowerCase();
         Criteria criteria = createEntityCriteria();
         if (keyWord.isEmpty()) {

@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-    <title>Herexamen_trips</title>
+    <title>Trips home</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
